@@ -1,0 +1,115 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap');
+body {
+margin: 0;
+font-family: "Nunito Sans", sans-serif;
+background-color: #F5F5F5;
+}
+
+header {
+background-color: #374355; 
+padding: 20px; 
+display: flex;
+padding-bottom: 12px;
+}
+header .logo{
+font-size: 40px;
+color: white;
+}
+header .app-title {
+padding-left: 10px;
+font-size: 30px;
+color: white;
+font-weight: 800; 
+}
+
+header .form-button {
+display: flex;
+font-weight: 600;
+background: none;
+padding: 10px 16px;
+margin-left: auto;
+margin-right: 20px;
+}
+
+header .login,
+header .register {
+font-size: 21px;
+font-weight:bold;
+background: none;
+border: none;
+color: #F5F5F5;
+font-family: "Nunito Sans", sans-serif;
+}
+
+header .login {
+margin-left: 10px;
+}
+
+header .register {
+margin-right: 10px;
+}
+
+.register:hover,
+.login:hover{
+    text-decoration: underline; 
+    cursor: pointer;
+   
+}
+
+.page-info {
+    display: flex;
+    flex-direction: column;
+    background-color:#F5F5F5;
+}
+
+.page-info h1 {
+    margin-top: 60px;
+    font-size: 36px;
+    font-weight: bold;
+    color: #333333;
+    margin-left: 110px;
+    padding-top: 0px;
+
+}
+
+.page-info p {
+    display: flex;
+    font-size: 22px;
+    color: #333333;
+    font-weight: bold;
+    padding-top: 0px;
+    margin: 0px 0px 0px 160px;
+}
+
+.login-button, .register-button{
+    font-family: "Nunito Sans", sans-serif;
+    height: 60px;
+    padding: 10px 25px;
+    border-radius: 12px;
+    margin: 20px 0px 0px 0px;
+    font-size: 21px;
+    font-weight: bold;
+    background-color:#374355;
+    color: #F5F5F5;
+    box-shadow: #374355;
+    cursor: pointer;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+}
+.login-button{
+    margin-left: 110px;
+    border: none;
+}
+.register-button{
+    margin-left: 40px;
+    background-color:#F5F5F5;
+    color: #374355;
+    box-shadow: #374355;
+    border-color:#374355;
+    border: 1px solid #374355;
+}
+.login-button:hover {
+    background-color: #445164;
+}
+.register-button:hover{
+    background-color: #E8E8E8;
+}

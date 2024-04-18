@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elegir Rol</title>
+    <link rel="stylesheet" href="../static/style-rol.css">
+    <link rel='stylesheet'
+        href='https://cdn-uicons.flaticon.com/2.3.0/uicons-regular-straight/css/uicons-regular-straight.css'>
+    <link rel='stylesheet'
+        href='https://cdn-uicons.flaticon.com/2.3.0/uicons-solid-rounded/css/uicons-solid-rounded.css'>
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <i class="fi fi-sr-layers"></i>
+        </div>
+        <div class="app-title">
+            <label for="nombre">FlashcardsApp</label>
+        </div>
+        <div class="inicio">
+            <button href="./" class="inicio" onclick="home()">Inicio</button>
+        </div>
+        <div class="form-button">
+            <div class="login">
+                <button href="./loginUsr" class="login" onclick="login()">Iniciar Sesión</button>
+            </div>
+        </div>
+    </header>
+    <main>
+        <h1>Selecciona tu rol</h1>
+        <div class="roles">
+            <div class="card" id="estudiante" onclick="register_estudiante()">
+                <div class="contenido">
+                    <i class="fi fi-rs-book-alt"></i>
+                    <h2>Estudiante</h2>
+                    <div class="caracteristicas">
+                        <ul>
+                            <li>Crear Flashcards</li>
+                            <li>Niveles</li>
+                            <li>Compartir Flashcard</li>
+                            <li>Auto Evaluación</li>
+                            <li>Bibliotecas</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" id="profesor" onclick="register_profesor()">
+                <div class="contenido">
+                    <i class="fi fi-rs-chalkboard-user"></i>
+                    <h2>Profesor</h2>
+                    <div class="caracteristicas">
+                        <ul>
+                            <li>Crear Flashcards</li>
+                            <li>Evaluación y Elección</li>
+                            <li>Seguimiento</li>
+                            <li>Crear Clases</li>
+                            <li>Retroalimentación</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+</body>
+<script>
+    function register_estudiante() {
+        window.location.href = './registrar';
+    }
+    function home() {
+        window.location.href = './';
+    }
+    function login() {
+      window.location.href = './login';
+    }
+
+</script>
+
+
+</html>
