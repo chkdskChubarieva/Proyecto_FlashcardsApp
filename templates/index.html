@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Inicio - FlashcardsApp</title>
+  <link rel="icon" href="../img/capas.png">
   <link rel="stylesheet" href="../static/style-index.css">
   <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.3.0/uicons-solid-rounded/css/uicons-solid-rounded.css'>
 </head>
@@ -20,10 +21,10 @@
     </div>
     <div class="form-button">
       <div class="register">
-        <button href="#register" class="register" id="registrar">Registrarse</button>
+        <button href="roles.html" class="register" id="registrar" onclick="roles()">Registrarse</button>
       </div>
       <div class="login">
-        <button href="#login" class="login">Iniciar Sesión</button>
+        <button href="login.html" class="login" onclick="login()">Iniciar Sesión</button>
       </div>
     </div>
   </header>
@@ -36,22 +37,16 @@
     <p>• Evalúa tus avances</p>
     <p>• Técnica de Repetición Espaciada (Active Recall)</p>
   </div>
-  <button href="#login" class="login-button" onclick="login()">Iniciar Sesión</button>
-  <button href="#register" class="register-button" onclick="roles()">Registrarse</button>
+  <button href="login.html" class="login-button" onclick="login()">Iniciar Sesión</button>
+  <button href="roles.html" class="register-button" onclick="roles()">Registrarse</button>
 </body>
-
-
 <script>
   function login() {
-      window.location.href = './login';
+      window.location.href = './vista_login';
   }
 
   function roles() {
       window.location.href = './roles';
-  }
-
-  function register_estudiante() {
-      window.location.href = './registrar';
   }
 </script>
 </html>

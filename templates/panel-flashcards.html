@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flashcards - FlashcardsApp</title>
+    <link rel="stylesheet" href="../static/paneles.css">
+    <link rel="stylesheet" href="../static/form-flashcard.css">
+    <link rel="stylesheet" href="../static/tarjeta-flashcard.css">
+    <link rel="icon" href="../img/capas.png">
+    <link rel='stylesheet'
+        href='https://cdn-uicons.flaticon.com/2.3.0/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.3.0/uicons-bold-rounded/css/uicons-bold-rounded.css'>
+    <link rel='stylesheet'
+        href='https://cdn-uicons.flaticon.com/2.3.0/uicons-solid-rounded/css/uicons-solid-rounded.css'>
+    <link rel='stylesheet'
+        href='https://cdn-uicons.flaticon.com/2.3.0/uicons-regular-straight/css/uicons-regular-straight.css'>
+</head>
+
+<body>
+    <header>
+
+        <section class="logo">
+            <i class="fi fi-sr-layers"></i>
+            <h2>FlashcardsApp</h2>
+        </section>
+
+        <div class="barra-busqueda">
+            <form action="">
+                <input type="text" name="buscador" id="buscador" placeholder="Buscar flashcards...">
+                <button type="button" class="busqueda"><i class="fi fi-rr-search"></i></button>
+            </form>
+        </div>
+
+        <section class="opciones">
+            <button type="button" class="notificacion"><i class="fi fi-rs-bell"></i></button>
+            <button type="button" class="usuario"><i class="fi fi-rr-user"></i> Estudiante</button>
+        </section>
+
+    </header>
+
+    <main>
+        <aside>
+            <section class="boton-principal">
+                <button type="button"><i class="fi fi-br-plus"></i> Flashcard</button>
+            </section>
+
+            <section class="boton-secundario">
+                <button type="button"><i class="fi fi-rr-home"></i>Inicio</button>
+                <button type="button"><i class="fi fi-rr-diary-bookmark-down"></i>Biblioteca personal</button>
+                <button type="button"><i class="fi fi-rr-apps"></i>General</button>
+                <div class="separador-linea"></div>
+                <button type="button"><i class="fi fi-rr-apps"></i>Clase 1</button>
+                <button type="button"><i class="fi fi-rr-apps"></i>Clase 2</button>
+                <button type="button"><i class="fi fi-rr-apps"></i>Clase 3</button>
+                <button type="button"><i class="fi fi-rr-apps"></i>Clase 4</button>
+                <button type="button"><i class="fi fi-rr-apps"></i>Clase 5</button>
+            </section>
+        </aside>
+
+        <section class="panel-principal">
+            <nav>
+                <a href="./panel-clases.html">Clases</a>
+                <p> > </p>
+                <a href="./panel-temas.html">Temas</a>
+                <p> > </p>
+                <a href="./panel-flashcards.html">Flashcards</a>
+            </nav>
+
+            <section class="panel-contenido">
+
+                <div class="tarjeta-flashcard">
+                    <div class="indice">
+                        <p>#1</p>
+                    </div>
+                    <div class="pregunta">
+                        <p>
+                            ¿Por que siempre llego tarde a clases?
+                        </p>
+                    </div>
+                </div>
+
+                <div class="tarjeta-flashcard">
+                    <div class="indice">
+                        <p>#2</p>
+                    </div>
+                    <div class="pregunta">
+                        <p>
+                            ¿Por que dejo mis deberes para hacerlos a ultima hora?
+                        </p>
+                    </div>
+                </div>
+
+                <div class="tarjeta-flashcard">
+                    <div class="indice">
+                        <p>#3</p>
+                    </div>
+                    <div class="pregunta">
+                        <p>
+                            ¿Por que siempre llego tarde a clases?
+                        </p>
+                    </div>
+                </div>
+
+                <div class="tarjeta-flashcard">
+                    <div class="indice">
+                        <p>#4</p>
+                    </div>
+                    <div class="pregunta">
+                        <p>
+                            ¿Por que dejo mis deberes para hacerlos a ultima hora?
+                        </p>
+                    </div>
+                </div>
+
+                <div class="tarjeta-flashcard">
+                    <div class="indice">
+                        <p>#5</p>
+                    </div>
+                    <div class="pregunta">
+                        <p>
+                            ¿Por que siempre llego tarde a clases?
+                        </p>
+                    </div>
+                </div>
+
+
+            </section>
+
+        </section>
+
+    </main>
+
+    <section class="form-flashcard">
+        <form action="">
+            <div class="encabezado-form">
+                <span>Crear flashcard</span>
+                <i class="fi fi-br-x"></i>
+            </div>
+            <div class="contenido-form">
+                <label for="pregunta">Pregunta:</label>
+                <textarea name="pregunta" id="pregunta" required></textarea>
+
+
+                <label for="respuesta">Respuesta:</label>
+                <textarea name="respuesta" id="respuesta" required></textarea>
+
+                <button type="submit">Crear flashcard</button>
+            </div>
+        </form>
+    </section>
+
+    <section class="flashcard-principal">
+        <div class="flashcard-encabezado">
+            <span>Pregunta</span>
+            <div class="opciones">
+                <i class="fi fi-sr-rotate-square"></i>
+                <i class="fi fi-sr-circle-xmark"></i>
+            </div>
+        </div>
+
+        <div class="flashcard-contenido">
+            <span>Que es el constructivismo?</span>
+        </div>
+    </section>
+
+</body>
+
+</html>

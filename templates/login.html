@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - FlashcardsApp</title>
+    <link rel="icon" href="../img/capas.png">
     <link rel="stylesheet" href="../static/login-register.css">
     <link rel='stylesheet'
         href='https://cdn-uicons.flaticon.com/2.3.0/uicons-solid-rounded/css/uicons-solid-rounded.css'>
@@ -23,12 +24,12 @@
         </div>
         <div class="form-button">
             <div class="login">
-                <button href="#login" class="login" on>Iniciar Sesión</button>
+                <button href="login.html" class="login" onclick="login()">Iniciar Sesión</button>
             </div>
         </div>
     </header>
     <main>
-        <form action="">
+        <form action="/login" method="POST">
             <section class="logo">
                 <i class="fi fi-sr-layers"></i>
                 <p>FlashcardsApp</p>
@@ -37,10 +38,10 @@
                 <h1>Iniciar sesión</h1>
 
                 <label for="user">Usuario</label><br>
-                <input type="text" id="user" required><br>
+                <input type="text" id="user" name="user" required><br>
 
                 <label for="password">Contraseña</label><br>
-                <input type="password" id="password" required><br>
+                <input type="password" id="password" name="password" required><br>
 
             </section>
             <section class="botones">
@@ -54,6 +55,8 @@
     function home() {
         window.location.href = './';
     }
-
+    function login() {
+      window.location.href = './login';
+  }
 </script>
 </html>

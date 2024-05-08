@@ -1,0 +1,460 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap');
+
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    background-color: #f5f5f5;
+    font-family: "Nunito Sans", sans-serif;
+    overflow-x: hidden;
+    /*desactiva el scroll horizontal*/
+}
+
+main {
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+/*CSS - HEADER*/
+
+header {
+    display: flex;
+    width: 100%;
+    height: 10vh;
+    background-color: #F5F5F5;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    padding: 0px 30px;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+    position: fixed;
+}
+
+header .logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo i {
+
+    font-size: 28px;
+    margin-top: 8px;
+    color: #374355;
+    cursor: pointer;
+}
+
+.logo h2 {
+    font-weight: 900;
+    padding: 0px 5px;
+    color: #374355;
+    cursor: pointer;
+}
+
+/*.logo a { ELIMINADO (REEMPLAZADO POR EL BOTON INICIO DEL ASIDE)
+    font-size: 20px;
+    font-weight: 700;
+    text-decoration: none;
+    color: #374355;
+    padding-left: 30px;
+}
+
+.logo a:hover {
+    text-decoration: underline #374355;
+}*/
+
+.barra-busqueda form {
+    display: flex;
+    align-items: center;
+}
+
+.barra-busqueda form input {
+    font-family: "Nunito Sans", sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+    width: 400px;
+    height: 40px;
+    border-radius: 15px 0px 0px 15px;
+    border: 1px solid #374355;
+    padding: 0px 15px;
+    background-color: #F5F5F5;
+    outline: none;
+    box-sizing: border-box;
+}
+
+.barra-busqueda button {
+    width: 40px;
+    height: 40px;
+    font-size: 16px;
+    border-radius: 0px 15px 15px 0px;
+    border: 1px solid #374355;
+    border-left: none;
+    box-sizing: border-box;
+    cursor: pointer;
+    transition: 0.1s ease;
+}
+
+.barra-busqueda form button:hover {
+    background-color: #374355;
+    color: #F5F5F5;
+}
+
+header .opciones {
+    display: flex;
+    gap: 40px;
+}
+
+.opciones button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    color: #374355;
+    background-color: #F5F5F5;
+    border: none;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.opciones .notificacion {
+    width: 35px;
+    height: 40px;
+    border-radius: 20px;
+}
+
+.opciones .notificacion:hover {
+    background-color: #F0F0F0;
+}
+
+.opciones .usuario {
+    width: 130px;
+    height: 40px;
+    border-radius: 12px;
+}
+
+.opciones .usuario:hover {
+    background-color: #F0F0F0;
+}
+
+.opciones i {
+    margin-top: 4px;
+    margin-right: 3px;
+    font-size: 20px;
+}
+
+/*FIN - HEADER*/
+
+/*CSS - BARRA LATERAL*/
+
+aside {
+    display: flex;
+    flex-direction: column;
+    width: 230px;
+    /*AJUSTAR EL ANCHO DEL ASIDE*/
+    height: 90vh;
+    border-right: 1px solid rgba(0, 0, 0, 0.2);
+    position: fixed;
+    top: 10vh;
+    overflow-y: auto;
+}
+
+aside .boton-principal {
+    display: flex;
+    width: 100%;
+    /*BORRAR SI HAY DESBORDAMIENTO*/
+    height: 120px;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    flex-shrink: 0;
+    /*EVITA QUE SE ENCOJA EL CONTENEDOR*/
+}
+
+aside .boton-principal button {
+    display: flex;
+    width: 140px;
+    height: 50px;
+    align-items: center;
+    font-family: "Nunito Sans", sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 10px;
+    padding: 0px 15px;
+    background-color: #5E8D74;
+    color: #FFFFFF;
+    border: none;
+    box-shadow: 2px 2px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+aside .boton-principal button i {
+    font-size: 18px;
+    margin-top: 5px;
+    margin-right: 10px;
+}
+
+aside .boton-principal button:hover {
+    background-color: rgba(94, 141, 116, 0.9);
+}
+
+aside .boton-secundario {
+    display: flex;
+    flex-direction: column;
+    height: 75vh;
+    align-items: center;
+}
+
+aside .boton-secundario button {
+    display: flex;
+    width: 190px;
+    height: 40px;
+    margin: 5px 0px 5px 0px;
+    padding: 0px 10px;
+    font-family: "Nunito Sans", sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    align-items: center;
+    border-radius: 10px;
+    color: #262626;
+    background-color: #F5F5F5;
+    border: 1px solid rgba(183, 189, 199, 0.5);
+    transition: 0.2s ease;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    flex-shrink: 0;
+    cursor: pointer;
+}
+
+/*IMPLEMENTAR DE MEJOR MANERA ESTA PARTE
+aside .boton-secundario button:first-child {
+    background-color: rgba(55, 67, 85, 1);
+    color: #FFFFFF;
+}*/
+
+aside .boton-secundario button:hover {
+    background-color: rgba(55, 67, 85, 0.9);
+    color: #FFFFFF;
+}
+
+aside .boton-secundario button i {
+    margin-top: 5px;
+    margin-right: 10px;
+}
+
+aside .boton-secundario .separador-linea {
+    width: 100%;
+    margin: 15px 0px 15px 0px;
+    /*border-bottom: 1px solid rgba(0, 0, 0, 0.2);*/
+}
+
+/*FIN - BARRA LATERAL*/
+
+/*CSS - PANEL PRINCIPAL*/
+
+.panel-principal {
+    width: 100%;
+    position: absolute;
+    left: 230px;
+    top: 10vh;
+    z-index: -1;
+}
+
+nav {
+    display: flex;
+    width: calc(100% - 50px);
+    height: 10vh;
+    align-items: center;
+    margin: 0px 25px;
+}
+
+nav a, nav p {
+    font-size: 22px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #262626;
+}
+
+nav a:hover {
+    text-decoration: underline 2px #262626;
+}
+
+nav p {
+    margin: 0px 8px 0px 8px;
+    cursor: default;
+}
+
+.panel-contenido {
+    display: flex;
+    width: 90%;
+    /*AJUSTAR EL % DE ACUERDO A LA PANTALLA*/
+    flex-wrap: wrap;
+    padding: 10px 50px;
+    box-sizing: border-box;
+}
+
+/*FIN - PANEL PRINCIPAL*/
+
+/*CSS - CONTENIDO PANEL DE CLASES*/
+
+.panel-contenido .tarjeta-clases {
+    width: 280px;
+    height: 170px;
+    margin: 0px 30px 30px 0px;
+    border-radius: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 1px rgba(0, 0, 0, 0.2);
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.tarjeta-clases .contenido {
+    width: 100%;
+    height: 65%;
+    background-color: #D9D9D9;
+}
+
+.contenido img {
+    width: 100%;
+    height: 100%;
+}
+
+.tarjeta-clases .titulo {
+    display: flex;
+    width: 100%;
+    height: 35%;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0px 15px;
+    box-sizing: border-box;
+    background-color: #374355;
+}
+
+.tarjeta-clases .titulo h2 {
+    color: #FFFFFF;
+    font-size: 22px;
+}
+
+.titulo button {
+    display: flex;
+    width: 35px;
+    height: 35px;
+    flex-shrink: 0;
+    /*con esta propiedad hacemos que el elemento no se encojan*/
+    justify-content: center;
+    align-items: center;
+    background-color: #374355;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+}
+
+.tarjeta-clases button i {
+    color: #FFFFFF;
+    font-size: 18px;
+    margin-top: 5px;
+}
+
+/*FIN - CONTENIDO PANEL DE CLASES*/
+
+/*CSS - CONTENIDO PANEL DE FLASHCARDS*/
+
+.panel-contenido .tarjeta-flashcard {
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    height: 150px;
+    margin: 0px 20px 20px 0px;
+    border-radius: 10px;
+    background-color: #5E8D74;
+    color: #FFFFFF;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    box-shadow: 0px 2px rgba(0, 0, 0, 0.2);
+    box-sizing: border-box;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.panel-contenido .tarjeta-flashcard:hover {
+    background-color: rgba(94, 141, 116, 0.9);
+    border: 1px solid #F5F5F5;
+}
+
+.panel-contenido .tarjeta-flashcard .indice {
+    display: flex;
+    width: 100%;
+    height: 35px;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid #FFFFFF;
+    font-weight: bold;
+}
+
+.panel-contenido .tarjeta-flashcard .pregunta {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    padding: 15px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    box-sizing: border-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/*FIN - CONTENIDO PANEL DE FLASHCARDS*/
+
+/*INICIO - CONTENIDO PANEL DE TEMAS*/
+
+.panel-contenido .cajon-temas {
+    display: flex;
+    width: 90%;
+    height: 70px;
+    align-items: center;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    box-sizing: border-box;
+}
+
+.panel-contenido .cajon-temas:last-child {
+    border-bottom: none;
+}
+
+.panel-contenido .cajon-temas .contenido-temas {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    padding: 0px 25px;
+    align-items: center;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.panel-contenido .cajon-temas .contenido-temas:hover {
+    background-color: rgba(94, 141, 116, 0.15) ;
+}
+
+.panel-contenido .cajon-temas span {
+    font-size: 20px;
+    font-weight: 500;
+    color: #262626;
+
+}
+
+.panel-contenido .cajon-temas i {
+    display: flex;
+    width: 38px;
+    height: 38px;
+    font-size: 20px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    margin-right: 12px;
+    background-color: rgba(94, 141, 116, 0.8);
+    color: #FFFFFF;
+}
+
+/*FIN - CONTENIDO PANEL DE TEMAS*/
