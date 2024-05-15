@@ -1,0 +1,179 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap');
+
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    background-color: #f5f5f5;
+    font-family: "Nunito Sans", sans-serif;
+}
+
+main {
+    display: flex;
+    width: 100%;
+    height: 90vh;
+    justify-content: center;
+    align-items: center;
+}
+
+form {
+    /*width: calc(25% - 100px);*/
+    width: 250px;
+    background-color: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0px 2px rgba(0, 0, 0, 0.2);
+    padding: 50px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    color: #374355;
+}
+
+.logo i {
+    font-size: 26px;
+}
+
+.logo p {
+    font-size: 16px;
+    font-weight: 900;
+    padding-bottom: 8px;
+    margin-left: 8px;
+    cursor: default;
+}
+
+h1 {
+    font-size: 36px;
+    color: #374355;
+    margin: 10px 0px;
+    cursor: default;
+}
+
+.formulario label {
+    font-weight: bold;
+    font-size: 15px;
+    color: #262626;
+}
+
+.formulario input {
+    font-family: "Nunito Sans", sans-serif;
+    font-weight: bold;
+    width: calc(100% - 20px);
+    height: 30px;
+    margin: 0px 0px 10px 0px;
+    padding: 0px 10px;
+    border: 1px solid rgba(0, 0, 0, 0.25);
+    outline: none;
+    border-radius: 12px;
+    color: #262626;
+}
+
+.botones {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+}
+
+.botones input {
+    width: 100%;
+    height: 40px;
+    border-radius: 12px;
+    border: none;
+    margin: 10px 0px 0px 0px;
+    outline: none;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: #5E8D74;
+    color: #ffffff;
+    box-shadow: 0px 2px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+}
+
+.botones input:hover {
+    background-color: #6aa083;
+}
+
+.botones input:active {
+    transform: scale(0.98);
+}
+
+.botones a {
+    font-size: 14px;
+    color: #262626;
+    text-decoration: none;
+    margin-top: 10px;
+}
+
+.botones a:hover {
+    text-decoration: underline #262626;
+}
+
+
+
+header {
+    background-color: #F5F5F5;
+    padding: 20px;
+    display: flex;
+    padding-bottom: 12px;
+    box-shadow: 0px 2px rgba(0, 0, 0, 0.2);
+}
+
+header .logo {
+    font-size: 40px;
+    color: #374355;
+}
+
+header .app-title {
+    padding-left: 10px;
+    font-size: 30px;
+    color: #374355;
+    font-weight: 800;
+}
+
+header .form-button {
+    display: flex;
+    font-weight: 600;
+    background: none;
+    padding: 10px 16px;
+    margin-left: auto;
+    margin-right: 20px;
+}
+
+header .login{
+    font-size: 21px;
+    font-weight: bold;
+    background: none;
+    border: none;
+    color: #374355;
+    font-family: "Nunito Sans", sans-serif;
+}
+
+header .inicio{
+    font-size: 21px;
+    font-weight: bold;
+    background: none;
+    border: none;
+    color: #374355;
+    font-family: "Nunito Sans", sans-serif;
+}
+
+header .login {
+    margin-left: 10px;
+    
+}
+
+header .inicio {
+    margin-left: 10px;
+    margin-top: 5px;
+}
+
+.inicio:hover,
+.login:hover {
+    text-decoration: underline;
+    cursor: pointer;
+
+}

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inicio - FlashcardsApp</title>
+  <link rel="icon" href="../img/capas.png">
+  <link rel="stylesheet" href="../static/style-index.css">
+  <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.3.0/uicons-solid-rounded/css/uicons-solid-rounded.css'>
+</head>
+
+<body>
+
+  <header>
+    <div class="logo">
+      <i class="fi fi-sr-layers"></i>
+    </div>
+    <div class="app-title">
+      <label for="nombre">FlashcardsApp</label>
+    </div>
+    <div class="form-button">
+      <div class="register">
+        <button href="roles.html" class="register" id="registrar" onclick="roles()">Registrarse</button>
+      </div>
+      <div class="login">
+        <button href="login.html" class="login" onclick="login()">Iniciar Sesión</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="page-info">
+    <h1>Flashcards App</h1>
+    <p>Bienvenido a Flashcards App</p>
+    <p>• Crea tus flashcards</p>
+    <p>• Organiza tus flashcards por temas</p>
+    <p>• Evalúa tus avances</p>
+    <p>• Técnica de Repetición Espaciada (Active Recall)</p>
+  </div>
+  <button href="login.html" class="login-button" onclick="login()">Iniciar Sesión</button>
+  <button href="roles.html" class="register-button" onclick="roles()">Registrarse</button>
+</body>
+<script>
+  function login() {
+      window.location.href = './vista_login';
+  }
+
+  function roles() {
+      window.location.href = './roles';
+  }
+</script>
+</html>

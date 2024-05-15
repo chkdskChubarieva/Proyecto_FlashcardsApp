@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temas - FlashcardsApp</title>
+    <link rel="stylesheet" href="../static/paneles.css">
+    <link rel="icon" href="../img/capas.png">
+    <link rel='stylesheet'
+        href='https://cdn-uicons.flaticon.com/2.3.0/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.3.0/uicons-bold-rounded/css/uicons-bold-rounded.css'>
+    <link rel='stylesheet'
+        href='https://cdn-uicons.flaticon.com/2.3.0/uicons-solid-rounded/css/uicons-solid-rounded.css'>
+    <link rel='stylesheet'
+        href='https://cdn-uicons.flaticon.com/2.3.0/uicons-regular-straight/css/uicons-regular-straight.css'>
+</head>
+
+<body>
+    <header>
+
+        <section class="logo">
+            <i class="fi fi-sr-layers"></i>
+            <h2>FlashcardsApp</h2>
+        </section>
+
+        <div class="barra-busqueda">
+            <form action="">
+                <input type="text" name="buscador" id="buscador" placeholder="Buscar flashcards...">
+                <button type="button" class="busqueda"><i class="fi fi-rr-search"></i></button>
+            </form>
+        </div>
+
+        <section class="opciones">
+            <button type="button" class="notificacion"><i class="fi fi-rs-bell"></i></button>
+            <button type="button" class="usuario"><i class="fi fi-rr-user"></i> Estudiante</button>
+        </section>
+
+    </header>
+
+    <main>
+        <aside>
+            <!--<section class="boton-principal">
+                <button type="button"><i class="fi fi-br-plus"></i> Tema</button>
+            </section>-->
+
+            <section class="boton-secundario">
+                <div class="separador-linea"></div>
+                <button type="button" onclick="inicio()"><i class="fi fi-rr-home"></i>Inicio</button>
+                <button type="button"><i class="fi fi-rr-diary-bookmark-down"></i>Biblioteca personal</button>
+                <div class="separador-linea"></div>
+                {%for clase in clases%}
+                {%if clase_seleccionada.ID_clase == clase.ID_clase%}
+                <button type="button" style="background-color: #374355; color: #f5f5f5;" onclick="temas('{{ clase.ID_clase }}')"><i class="fi fi-rr-apps"></i>{{clase.nombre_clase}}</button>
+                {%else%}
+                <button type="button"onclick="temas('{{ clase.ID_clase }}')"><i class="fi fi-rr-apps"></i>{{clase.nombre_clase}}</button>
+                {% endif %}
+                {% endfor %}
+            </section>
+        </aside>
+
+        <section class="panel-principal">
+            <nav>
+                <a>{{clase_seleccionada.nombre_clase}}</a>
+                <p> > </p>
+                <a>Temas</a>
+            </nav>
+
+            <section class="panel-contenido">
+                {% for tema in temas %}
+                <div class="cajon-temas">
+                    <div class="contenido-temas">
+                        <i class="fi fi-rs-book-alt"></i>
+                        <span onclick="flash('{{ tema.ID_tema }}')">{{tema.nombre_tema}}</span>
+                    </div>
+                </div>
+                {% endfor %}
+            </section>
+        </section>
+    </main>
+
+</body>
+<script>
+    function temas(idClase) {
+    window.location.href = "/temas/" + idClase;
+    }
+    function flash(idTema)  {
+    window.location.href = "/flash/" + idTema; 
+    }
+    function inicio() {
+    window.location.href = "/clases";
+    }
+</script>
+</html>

@@ -1,0 +1,161 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap');
+
+
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    background-color: #F5F5F5;
+    font-family: "Nunito Sans", sans-serif;
+}
+
+header i {
+    font-size: 40px;
+}
+
+main {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.roles {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60vh;
+    margin: 0;
+}
+
+h1 {
+    display: block;
+    margin-top: 2rem;
+
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    height: 270px;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    margin: 0 10px;
+    padding: 10px;
+    text-align: center;
+    background-color: #D9D9D9;
+    box-shadow: 2px 2px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+}
+
+.card:hover {
+    border: 2px solid rgba(134, 170, 249);
+    box-shadow: 2px 2px rgba(134, 170, 249, 0.45);
+}
+
+.card i {
+    font-size: 56px;
+    color: #262626;
+
+}
+
+.card h2 {
+    margin-top: -10px;
+    color: #262626;
+    margin-bottom: 10px;
+}
+
+.card ul {
+    /* list-style-type: none; */
+    padding: 0;
+    color: #262626;
+}
+
+
+
+.card .caracteristicas {
+    padding: 0px 20px 0px 40px;
+    display: flex;
+    text-align: left;
+}
+
+.card .contenido {
+
+    margin-top: 20px;
+}
+
+#estudiante {
+    margin-right: 20px;
+}
+
+#profesor {
+    margin-left: 20px;
+}
+
+
+header {
+    background-color: #F5F5F5;
+    padding: 20px;
+    display: flex;
+    padding-bottom: 12px;
+    box-shadow: 0px 2px rgba(0, 0, 0, 0.2);
+}
+
+header .logo {
+    font-size: 40px;
+    color: #374355;
+}
+
+header .app-title {
+    padding-left: 10px;
+    font-size: 30px;
+    color: #374355;
+    font-weight: 800;
+}
+
+header .form-button {
+    display: flex;
+    font-weight: 600;
+    background: none;
+    padding: 10px 16px;
+    margin-left: auto;
+    margin-right: 20px;
+}
+
+header .login{
+    font-size: 21px;
+    font-weight: bold;
+    background: none;
+    border: none;
+    color: #374355;
+    font-family: "Nunito Sans", sans-serif;
+}
+
+header .inicio{
+    font-size: 21px;
+    font-weight: bold;
+    background: none;
+    border: none;
+    color: #374355;
+    font-family: "Nunito Sans", sans-serif;
+}
+
+header .login {
+    margin-left: 10px;
+    
+}
+
+header .inicio {
+    margin-left: 10px;
+    margin-top: 5px;
+}
+
+.inicio:hover,
+.login:hover {
+    text-decoration: underline;
+    cursor: pointer;
+
+}
