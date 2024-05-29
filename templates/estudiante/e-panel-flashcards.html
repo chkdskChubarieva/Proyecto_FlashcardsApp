@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flashcards - FlashcardsApp</title>
+    <link rel="stylesheet" href="../../static/plantilla.css">
+    <link rel="stylesheet" href="../../static/estudiante/e-panel-flashcards.css">
+    <link rel="stylesheet" href="../../static/estudiante/form-crear-flashcard.css">
+    <link rel="stylesheet" href="../../static/estudiante/tarjeta-flashcard.css">
+    <link rel="icon" href="../../static/images/icon.png">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap');
+        @import url('https://cdn-uicons.flaticon.com/2.3.0/uicons-regular-rounded/css/uicons-regular-rounded.css');
+        @import url('https://cdn-uicons.flaticon.com/2.3.0/uicons-solid-rounded/css/uicons-solid-rounded.css');
+        @import url('https://cdn-uicons.flaticon.com/2.3.0/uicons-bold-rounded/css/uicons-bold-rounded.css');
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <i class="fi fi-sr-layers"></i>
+            <span>FlashcardsApp</span>
+        </div>
+
+        <div class="barra-busqueda">
+            <form action="">
+                <input type="text" name="buscador" id="buscador" placeholder="Buscar flashcards..." maxlength="60"
+                    autocomplete="off">
+                <button type="submit" class="busqueda"><i class="fa-solid fa-magnifying-glass"></i></button>
+            </form>
+        </div>
+
+        <div class="opciones">
+            <button type="button" class="notificacion"><i class="fa-regular fa-bell"></i></button>
+            <button type="button" class="usuario" id="perfil"><i class="fa-regular fa-user"></i>
+                <div class="info-usuario">
+                    <span class="username">Usuario</span>
+                    <span class="rol">Estudiante</span>
+                </div>
+            </button>
+
+            <div class="desplegable" id="desplegable">
+                <span class="titulo-desplegable">Opciones de sesión</span>
+                <button type="button">
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                    <span>Cerrar sesión</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <aside>
+            <div class="boton-principal">
+                <button type="button" onclick="mostrarForm()"><i class="fa-solid fa-plus"></i> Flashcard</button>
+            </div>
+
+            <div class="separador"></div>
+
+            <div class="botones-secundarios">
+
+                <button type="button" onclick="inicio()"><i class="fi fi-rr-home"></i> Inicio</button>
+                <button type="button"><i class="fi fi-rr-book"></i> Biblioteca personal</button>
+                <button type="button"><i class="fi fi-rr-books"></i> Biblioteca compartida</button>
+            </div>
+
+            <div class="separador"></div>
+
+            <div class="botones-clases">
+                {%for clase in clases%}
+                {%if clase_seleccionada.ID_clase == clase.ID_clase%}
+                <button type="button"
+                    style="background-color: rgba(38, 38, 38, 0.1); color: #262626; border-left: 3px solid #262626;"
+                    onclick="temas('{{ clase.ID_clase }}')"><i class="fi fi-rr-chalkboard-user"></i>
+                    {{clase.nombre_clase}}</button>
+                {%else%}
+                <button type="button" onclick="temas('{{ clase.ID_clase }}')"><i
+                        class="fi fi-rr-chalkboard-user"></i>{{clase.nombre_clase}}</button>
+                {% endif %}
+                {% endfor %}
+            </div>
+        </aside>
+        <section class="panel-principal">
+            <nav>
+                <a>Clases</a>
+                <p> > </p>
+                <a class="link-temas"
+                    onclick="temas('{{clase_seleccionada.ID_clase}}')">{{clase_seleccionada.nombre_clase}}</a>
+                <p> > </p>
+                <a>{{tema_seleccionado.nombre_tema}}</a>
+            </nav>
+            <div class="contenido-principal">
+
+                {% for flashcard in flashcards %}
+                <div class="tarjeta-flashcard" onclick="abrir('{{ flashcard.ID_flashcard }}')">
+                    <div class="indice">
+                        <p>#{{loop.index}}</p>
+                        {%if flashcard.estado == 'privado'%}
+                        <div class="indicador-estado" style="background-color: #CA8686;"></div>
+                        {%endif%}
+                        {%if flashcard.estado == 'revision'%}
+                        <div class="indicador-estado" style="background-color: #E0C975;"></div>
+                        {%endif%}
+                        {%if flashcard.estado == 'compartido'%}
+                        <div class="indicador-estado" style="background-color: #86CAA1;"></div>
+                        {%endif%}
+                    </div>
+                    <div class="pregunta">
+                        <p>
+                            {{flashcard.pregunta}}
+                        </p>
+                    </div>
+                </div>
+                {% endfor %}
+
+            </div>
+        </section>
+    </main>
+
+    <!--
+        =============================INICIO - FORM CREAR FLASHCARD=============================
+    -->
+
+    <div class="fondo-form" style="display: none;">
+        <section class="form-flashcard" style="display: none;">
+            <form action="/flashcard/crear" method="POST">
+                <div class="encabezado-form">
+                    <span>Crear flashcard</span>
+                    <i class="fi fi-br-x" onclick="ocultarForm()"></i>
+                </div>
+                <div class="contenido-form">
+                    <label for="pregunta">Pregunta:</label>
+                    <textarea name="pregunta" id="pregunta" required></textarea>
+
+
+                    <label for="respuesta">Respuesta:</label>
+                    <textarea name="respuesta" id="respuesta" required></textarea>
+
+                    <button type="submit" onclick="crearFlash()">Crear flashcard</button>
+                </div>
+            </form>
+        </section>
+    </div>
+
+    <!--
+        =============================FIN - FORM CREAR FLASHCARD=============================
+    -->
+
+    <!--
+        =============================INICIO - TARJETA FLASHCARD=============================
+    -->
+
+    {%if mostrar%}
+    <div class="fondo">
+        <div class="contenedor-flashcards">
+            <!--FLASHCARD LADO RESPUESTA-->
+            <section class="flashcard-principal-respuesta">
+                <div class="flashcard-encabezado">
+                    <span>Respuesta</span>
+                    <div class="opciones">
+                        <i class="fa-solid fa-rotate" onclick="vuelta()"></i>
+                        <i class="fa-solid fa-xmark" onclick="salir('{{ tema_seleccionado.ID_tema }}')"></i>
+                    </div>
+                </div>
+
+                <div class="flashcard-barra">
+                    <div class="barra-dificultad">
+                        <span>Dificultad:</span>
+                        <button type="button" name="dificultad" id="facil" onclick="seleccionar_dificultad('{{ flashcard_seleccionada.ID_flashcard }}', 'facil')">Fácil</button>
+                        <button type="button" name="dificultad" id="medio" onclick="seleccionar_dificultad('{{ flashcard_seleccionada.ID_flashcard }}', 'medio')">Medio</button>
+                        <button type="button" name="dificultad" id="dificil" onclick="seleccionar_dificultad('{{ flashcard_seleccionada.ID_flashcard }}', 'dificil')">Difícil</button>
+                    </div>
+
+                    <div class="barra-botones">
+                        {%if flashcard_seleccionada.estado != 'compartido' %}
+                            {%if flashcard_seleccionada.estado == 'privado' %}
+                                <button type="button" onclick="enviar_revision('{{ flashcard_seleccionada.ID_flashcard }}')"><i class="fa-solid fa-arrow-up-from-bracket"></i>Enviar a revisión</button>
+                            {%else%}
+                                <button type="button" onclick="enviar_revision('{{ flashcard_seleccionada.ID_flashcard }}')"><i class="fa-solid fa-arrow-up-from-bracket"></i>Cancelar revisión</button> 
+                            {%endif%} 
+                        {%endif%}    
+                    </div>
+                </div>
+
+                <div class="flashcard-contenido">
+                    <span>{{flashcard_seleccionada.respuesta}}</span>
+                </div>
+            </section>
+
+            <!--FLASHCARD LADO PREGUNTA-->
+            <section class="flashcard-principal-pregunta">
+                <div class="flashcard-encabezado">
+                    <span>Pregunta</span>
+                    <div class="opciones">
+                        <i class="fa-solid fa-rotate" onclick="vuelta()"></i>
+                        <i class="fa-solid fa-xmark" onclick="salir('{{ tema_seleccionado.ID_tema }}')"></i>
+                    </div>
+                </div>
+
+                <div class="flashcard-barra">
+                    <div class="barra-dificultad">
+                        <span>Dificultad:</span>
+                        <button type="button" name="dificultad" id="facil" onclick="seleccionar_dificultad('{{ flashcard_seleccionada.ID_flashcard }}', 'facil')">Fácil</button>
+                        <button type="button" name="dificultad" id="medio" onclick="seleccionar_dificultad('{{ flashcard_seleccionada.ID_flashcard }}', 'medio')">Medio</button>
+                        <button type="button" name="dificultad" id="dificil" onclick="seleccionar_dificultad('{{ flashcard_seleccionada.ID_flashcard }}', 'dificil')">Difícil</button>
+                    </div>
+
+                    <div class="barra-botones">
+                        {%if flashcard_seleccionada.estado != 'compartido' %}
+                            {%if flashcard_seleccionada.estado == 'privado' %}
+                                <button type="button" onclick="enviar_revision('{{ flashcard_seleccionada.ID_flashcard }}')"><i class="fa-solid fa-arrow-up-from-bracket"></i>Enviar a revisión</button>
+                            {%else%}
+                                <button type="button" onclick="enviar_revision('{{ flashcard_seleccionada.ID_flashcard }}')"><i class="fa-solid fa-arrow-up-from-bracket"></i>Cancelar revisión</button> 
+                            {%endif%} 
+                        {%endif%} 
+                    </div>
+                </div>
+
+                <div class="flashcard-contenido">
+                    <span>{{flashcard_seleccionada.pregunta}}</span>
+                </div>
+            </section>
+        </div>
+
+        <!--FLASHCARD OPCIONES LATERALES-->
+        <section class="flashcard-opciones-laterales">
+            <div class="calificacion">
+                <span>Calificación:</span>
+                <div class="estrellas">
+                    <i class="fa-solid fa-star" data-value="1"></i>
+                    <i class="fa-solid fa-star" data-value="2"></i>
+                    <i class="fa-solid fa-star" data-value="3"></i>
+                    <i class="fa-solid fa-star" data-value="4"></i>
+                    <i class="fa-solid fa-star" data-value="5"></i>
+                </div>
+            </div>
+
+            <div class="dificultad">
+                <span>Dificultad:</span>
+                {%if flashcard_seleccionada.dificultad=='facil'%}
+                <div class="cuadro-dificultad" style="background-color: #86CAA1;">Fácil</div>
+                {%endif%}
+                {%if flashcard_seleccionada.dificultad=='medio'%}
+                <div class="cuadro-dificultad" style="background-color: #E0C975;">Medio</div>
+                {%endif%}
+                {%if flashcard_seleccionada.dificultad=='dificil'%}
+                <div class="cuadro-dificultad" style="background-color: #CA8686;">Difícil</div>
+                {%endif%}
+            </div>
+
+            <div class="comentario">
+                <span>Comentario docente:</span>
+                <div class="comentario-docente">
+                    El diseño web responsivo es fundamental en la era digital actual. Con la diversidad de dispositivos
+                    y tamaños de pantalla disponibles, es crucial que los sitios web se adapten de manera efectiva para
+                    proporcionar una experiencia de usuario óptima en cualquier entorno.
+                </div>
+            </div>
+
+            <div class="estado">
+                <span>Estado:</span>
+                <div class="cuadro-estado">
+                    {%if flashcard_seleccionada.estado == 'privado'%}
+                    <div class="indicador-estado" style="background-color: #CA8686;"></div>
+                    Privado
+                    {%endif%}
+                    {%if flashcard_seleccionada.estado == 'revision'%}
+                    <div class="indicador-estado" style="background-color: #E0C975;"></div>
+                    En revision
+                    {%endif%}
+                    {%if flashcard_seleccionada.estado == 'compartido'%}
+                    <div class="indicador-estado" style="background-color: #86CAA1;"></div>
+                    Compartido
+                    {%endif%}
+                </div>
+            </div>
+
+        </section>
+    </div>
+    {% endif %}
+
+    <!--
+        =============================FIN - TARJETA FLASHCARD=============================
+    -->
+
+</body>
+
+<script>
+    const fondoSection = document.querySelector('.fondo-form');
+    const formSection = document.querySelector('.form-flashcard');
+    function temas(idClase) {
+        window.location.href = "/temas/" + idClase;
+    }
+
+    function abrir(idFlash) {
+        window.location.href = "/flashcard/" + idFlash;
+
+    }
+
+    function seleccionar_dificultad(idFlash, dificultad) {
+        window.location.href = "/cambiar_dificultad/" + "/" + idFlash + "/" + dificultad;  
+    }
+    
+    function crearFlash() {
+        window.location.href = "/flashcard/crear";
+    }
+    function enviar_revision(idFlash) {
+        window.location.href = "/enviar_revision/" + idFlash;
+    }
+    function mostrarForm() {
+        fondoSection.style.display = 'block';
+        formSection.style.display = 'block';
+    }
+    function ocultarForm() {
+        fondoSection.style.display = 'none';
+        formSection.style.display = 'none';
+    }
+    function vuelta() {
+        const preguntaSection = document.querySelector('.flashcard-principal-pregunta');
+        const respuestaSection = document.querySelector('.flashcard-principal-respuesta');
+
+        if (preguntaSection.style.display === 'none') {
+            preguntaSection.style.display = 'block';
+            respuestaSection.style.display = 'none';
+        } else {
+            preguntaSection.style.display = 'none';
+            respuestaSection.style.display = 'block';
+        }
+    }
+    
+    function salir(idTema) {
+        window.location.href = "/flash/" + idTema;
+    }
+    function inicio() {
+        window.location.href = "/clases";
+    }
+
+    /*DESPLEGAR EL BOTON DE CERRAR SESION*/
+    document.addEventListener("DOMContentLoaded", function () {
+        const profileButton = document.getElementById("perfil");
+        const profileDropdown = document.getElementById("desplegable");
+
+        profileButton.addEventListener("click", function () {
+            if (profileDropdown.classList.contains("show")) {
+                profileDropdown.classList.remove("show");
+            } else {
+                profileDropdown.classList.add("show");
+            }
+        });
+
+        // Close dropdown if clicked outside
+        document.addEventListener("click", function (event) {
+            if (!profileButton.contains(event.target) && !profileDropdown.contains(event.target)) {
+                profileDropdown.classList.remove("show");
+            }
+        });
+    });
+</script>
+
+</html>

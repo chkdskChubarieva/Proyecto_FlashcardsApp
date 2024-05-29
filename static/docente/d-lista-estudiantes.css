@@ -1,0 +1,101 @@
+.contenedor-lista {
+    width: 100%;
+    height: 100%;
+    padding: 40px 20px;
+}
+
+.separador-lista {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.separador-lista:last-child {
+    border: none;
+}
+
+.contenedor-lista .contenedor-info-alumno {
+    display: flex;
+    width: 100%;
+    height: 70px;
+    padding: 0px 30px;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 10px;
+    cursor: pointer;
+    flex-shrink: 0;
+    gap: 5px;
+}
+
+.contenedor-lista .contenedor-info-alumno:hover {
+    background-color: rgba(94, 141, 116, 0.15);
+}
+
+.contenedor-lista .contenedor-info-alumno .col-1 {
+    display: flex;
+    font-size: 18px;
+    font-weight: 600;
+    align-items: center;
+    color: #464646;
+    gap: 10px;
+}
+
+.contenedor-lista .contenedor-info-alumno .col-1 span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.contenedor-lista .contenedor-info-alumno .col-1 i {
+    padding: 10px;
+    border-radius: 50%;
+    background-color: rgba(94, 141, 116, 0.8);
+    color: #F5F5F5;
+}
+
+.contenedor-lista .contenedor-info-alumno .col-2,
+.contenedor-lista .contenedor-info-alumno .col-3,
+.contenedor-lista .contenedor-info-alumno .col-4 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.contenedor-lista .contenedor-info-alumno .col-2 span,
+.contenedor-lista .contenedor-info-alumno .col-3 span,
+.contenedor-lista .contenedor-info-alumno .col-4 span {
+    font-size: 14px;
+    font-weight: bold;
+    color: #464646;
+}
+
+.contenedor-lista .contenedor-info-alumno .col-2 p,
+.contenedor-lista .contenedor-info-alumno .col-3 p,
+.contenedor-lista .contenedor-info-alumno .col-4 p {
+    font-size: 15px;
+    color: #262626;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.contenedor-lista .contenedor-info-alumno div {
+    flex-shrink: 0;
+}
+
+.contenedor-lista .contenedor-info-alumno .col-4 {
+    width: 151px;
+}
+
+.contenedor-lista .contenedor-info-alumno .col-3 {
+    width: 155px;
+}
+
+.contenedor-lista .contenedor-info-alumno .col-2,
+.contenedor-lista .contenedor-info-alumno .col-2 p {
+    display: flex;
+    width: 250px;
+    justify-content: center;
+}
+
+.contenedor-lista .contenedor-info-alumno .col-1 {
+    width: 250px;
+}

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Elegir Rol</title>
-    <link rel="icon" href="../img/capas.png">
+    <link rel="icon" href="../static/images/icon.png">
     <link rel="stylesheet" href="../static/style-rol.css">
     <link rel='stylesheet'
         href='https://cdn-uicons.flaticon.com/2.3.0/uicons-regular-straight/css/uicons-regular-straight.css'>
@@ -32,46 +32,46 @@
     </header>
     <main>
         <h1>Selecciona tu rol</h1>
-        
-            <div class="roles">
-                <form action="/estado_estudiante" method="POST"></form>
-                    <div class="card" id="estudiante" type="submit" name="estudiante" onclick="registerEstudiante()">
-                        <div class="contenido">
-                            <i class="fi fi-rs-book-alt"></i>
-                            <h2>Estudiante</h2>
-                            <div class="caracteristicas">
-                                <ul>
-                                    <li>Crear Flashcards</li>
-                                    <li>Niveles</li>
-                                    <li>Compartir Flashcard</li>
-                                    <li>Auto Evaluación</li>
-                                    <li>Bibliotecas</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </form>
 
-                <form action="/estado_docente" method="POST">
-                    <div class="card" id="profesor" type="submit" name="docente" onclick="registerDocente()">
-                        <div class="contenido">
-                            <i class="fi fi-rs-chalkboard-user"></i>
-                            <h2>Profesor</h2>
-                            <div class="caracteristicas">
-                                <ul>
-                                    <li>Crear Flashcards</li>
-                                    <li>Evaluación y Elección</li>
-                                    <li>Seguimiento</li>
-                                    <li>Crear Clases</li>
-                                    <li>Retroalimentación</li>
-                                </ul>
-                            </div>
+        <div class="roles">
+            <form action="/estado_estudiante" method="POST"></form>
+            <div class="card" id="estudiante" type="submit" name="estudiante" onclick="registerEstudiante()">
+                <div class="contenido">
+                    <i class="fi fi-rs-book-alt"></i>
+                    <h2>Estudiante</h2>
+                    <div class="caracteristicas">
+                        <ul>
+                            <li>Crear Flashcards</li>
+                            <li>Niveles</li>
+                            <li>Compartir Flashcard</li>
+                            <li>Auto Evaluación</li>
+                            <li>Bibliotecas</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            </form>
+
+            <form action="/estado_docente" method="POST">
+                <div class="card" id="profesor" type="submit" name="docente" onclick="registerDocente()">
+                    <div class="contenido">
+                        <i class="fi fi-rs-chalkboard-user"></i>
+                        <h2>Profesor</h2>
+                        <div class="caracteristicas">
+                            <ul>
+                                <li>Crear Flashcards</li>
+                                <li>Evaluación y Elección</li>
+                                <li>Seguimiento</li>
+                                <li>Crear Clases</li>
+                                <li>Retroalimentación</li>
+                            </ul>
                         </div>
                     </div>
-                </form>
-            </div>
-        
-        
+                </div>
+            </form>
+        </div>
+
+
     </main>
 </body>
 <script>
@@ -87,7 +87,7 @@
         window.location.href = './';
     }
     function login() {
-      window.location.href = './vista_login';
+        window.location.href = './vista_login';
     }
 
 </script>

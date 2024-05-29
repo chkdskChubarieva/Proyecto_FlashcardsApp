@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temas - FlashcardsApp</title>
+    <link rel="stylesheet" href="../../static/plantilla.css">
+    <link rel="stylesheet" href="../../static/docente/d-panel-temas.css">
+    <link rel="stylesheet" href="../../static/docente/form-crear-tema.css">
+    <link rel="icon" href="../../static/images/icon.png">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap');
+        @import url('https://cdn-uicons.flaticon.com/2.3.0/uicons-regular-rounded/css/uicons-regular-rounded.css');
+        @import url('https://cdn-uicons.flaticon.com/2.3.0/uicons-solid-rounded/css/uicons-solid-rounded.css');
+        @import url('https://cdn-uicons.flaticon.com/2.3.0/uicons-bold-rounded/css/uicons-bold-rounded.css');
+        @import url('https://cdn-uicons.flaticon.com/2.3.0/uicons-regular-straight/css/uicons-regular-straight.css');
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <i class="fi fi-sr-layers"></i>
+            <span>FlashcardsApp</span>
+        </div>
+
+        <div class="opciones">
+            <button type="button" class="notificacion"><i class="fa-regular fa-bell"></i></button>
+            <button type="button" class="usuario" id="perfil"><i class="fa-regular fa-user"></i>
+                <div class="info-usuario">
+                    <span class="username">Usuario</span>
+                    <span class="rol">Docente</span>
+                </div>
+            </button>
+
+            <div class="desplegable" id="desplegable">
+                <span class="titulo-desplegable">Opciones de sesión</span>
+                <button type="button">
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                    <span>Cerrar sesión</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <aside>
+            <div class="boton-principal">
+                <button type="button" onclick="mostrarForm()"><i class="fa-solid fa-plus"></i> Tema</button>
+            </div>
+
+            <div class="separador"></div>
+
+            <div class="botones-secundarios">
+
+                <button type="button" onclick="inicio()"><i class="fi fi-rr-home"></i> Inicio</button>
+                <button type="button"><i class="fi fi-rr-book"></i> Biblioteca personal</button>
+                <button type="button" onclick="biblioteca_compartida()"><i class="fi fi-rr-books"></i> Biblioteca compartida</button>
+                <button type="button" onclick="alumnos()"><i class="fi fi-rr-users"></i> Alumnos</button>
+            </div>
+
+            <div class="separador"></div>
+
+            <div class="botones-clases">
+                {%for clase in clases%}
+                {%if clase_seleccionada.ID_clase == clase.ID_clase%}
+                <button type="button"
+                    style="background-color: rgba(38, 38, 38, 0.1); color: #262626; border-left: 3px solid #262626;"
+                    onclick="temas('{{ clase.ID_clase }}')"><i class="fi fi-rr-chalkboard-user"></i>
+                    {{clase.nombre_clase}}</button>
+                {%else%}
+                <button type="button" onclick="temas('{{ clase.ID_clase }}')"><i
+                        class="fi fi-rr-chalkboard-user"></i>{{clase.nombre_clase}}</button>
+                {% endif %}
+                {% endfor %}
+            </div>
+        </aside>
+        <section class="panel-principal">
+            <nav>
+                <a>Clases</a>
+                <p> > </p>
+                <a>{{clase_seleccionada.nombre_clase}}</a>
+            </nav>
+
+            <div class="contenido-principal">
+                <div class="informacion">
+                    <div class="codigo-clase">
+                        <span>Código de clase</span>
+                        <div class="codigo">
+                            <strong id="codigo">{{clase_seleccionada.codigo_clase}}</strong>
+                            <!--INSERTAR AQUI CODIGO DE CLASE-->
+                            <i class="fa-regular fa-copy" id="copiar-icono" onclick="copiarCodigo()"></i>
+                        </div>
+                        <span class="mensaje-copiado" id="mensaje">¡Código copiado!</span>
+                    </div>
+                </div>
+
+                <div class="temas">
+                    {% for tema in temas %}
+                    <div class="cajon-temas">
+                        <div class="contenido-temas" onclick="flash('{{ tema.ID_tema }}')">
+                            <i class="fi fi-rs-book-alt"></i>
+                            <span>{{tema.nombre_tema}}</span>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div class="fondo-form" style="display: none;">
+        <form action="/temas/crear" class="crear-tema" method="POST" style="display: none;">
+            <div class="encabezado-form">
+                <span>Crear tema</span>
+            </div>
+            <div class="contenido-form">
+                <label for="titulo">Titulo del tema:</label>
+                <input type="text" name="titulo" id="titulo" maxlength="80" placeholder="Introduce el titulo" required>
+                <div class="botones-form">
+                    <button type="button" name="cancelar" id="cancelar" onclick="ocultarForm()">Cancelar</button>
+                    <button type="submit" name="unirme" id="unirme" onclick="crearTema()">Crear tema</button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</body>
+
+<script>
+    const fondoSection = document.querySelector('.fondo-form');
+    const formSection = document.querySelector('.crear-tema');
+    function temas(idClase) {
+        window.location.href = "/temas/" + idClase;
+    }
+    function flash(idTema) {
+        window.location.href = "/flash/" + idTema;
+    }
+    function inicio() {
+        window.location.href = "/clases";
+    }
+    function alumnos() {
+        window.location.href = "/lista_estudiantes";
+    }
+    
+    function crearTema() {
+        window.location.href = "/temas/crear";
+    }
+    function biblioteca_compartida() {
+        window.location.href = "/biblioteca_compartida";
+    }
+
+    function mostrarForm() {
+        fondoSection.style.display = 'flex';
+        formSection.style.display = 'block';
+    }
+    function ocultarForm() {
+        fondoSection.style.display = 'none';
+        formSection.style.display = 'none';
+    }
+
+    //COPIAR CODIGO DE CLASE
+    function copiarCodigo() {
+        // Obtiene el texto dentro de la etiqueta <strong>
+        var codigo = document.getElementById("codigo").innerText;
+
+        // Crea un campo de texto temporal
+        var campoTemporal = document.createElement("textarea");
+        campoTemporal.value = codigo;
+        document.body.appendChild(campoTemporal);
+
+        // Selecciona el contenido del campo de texto
+        campoTemporal.select();
+        campoTemporal.setSelectionRange(0, 99999); // Para móviles
+
+        // Copia el texto al portapapeles
+        document.execCommand("copy");
+
+        // Elimina el campo de texto temporal
+        document.body.removeChild(campoTemporal);
+
+        // Muestra el mensaje de "Código copiado"
+        var mensaje = document.getElementById("mensaje");
+        mensaje.classList.add("mostrar");
+
+        // Oculta el mensaje después de 2 segundos con una transición suave
+        setTimeout(function () {
+            mensaje.classList.remove("mostrar");
+        }, 2000);
+    }
+
+    /*DESPLEGAR EL BOTON DE CERRAR SESION*/
+    document.addEventListener("DOMContentLoaded", function () {
+        const profileButton = document.getElementById("perfil");
+        const profileDropdown = document.getElementById("desplegable");
+
+        profileButton.addEventListener("click", function () {
+            if (profileDropdown.classList.contains("show")) {
+                profileDropdown.classList.remove("show");
+            } else {
+                profileDropdown.classList.add("show");
+            }
+        });
+
+        // Close dropdown if clicked outside
+        document.addEventListener("click", function (event) {
+            if (!profileButton.contains(event.target) && !profileDropdown.contains(event.target)) {
+                profileDropdown.classList.remove("show");
+            }
+        });
+    });
+</script>
+
+</html>

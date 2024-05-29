@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clases - FlashcardsApp</title>
+    <link rel="stylesheet" href="../../static/plantilla.css">
+    <link rel="stylesheet" href="../../static/estudiante/e-panel-clases.css">
+    <link rel="stylesheet" href="../../static/estudiante/form-unirse-clase.css">
+    <link rel="icon" href="../../static/images/icon.png">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap');
+        @import url('https://cdn-uicons.flaticon.com/2.3.0/uicons-regular-rounded/css/uicons-regular-rounded.css');
+        @import url('https://cdn-uicons.flaticon.com/2.3.0/uicons-solid-rounded/css/uicons-solid-rounded.css');
+        @import url('https://cdn-uicons.flaticon.com/2.3.0/uicons-bold-rounded/css/uicons-bold-rounded.css');
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <i class="fi fi-sr-layers"></i>
+            <span>FlashcardsApp</span>
+        </div>
+        <div class="opciones">
+            <button type="button" class="notificacion"><i class="fa-regular fa-bell"></i></button>
+            <button type="button" class="usuario" id="perfil"><i class="fa-regular fa-user"></i>
+                <div class="info-usuario">
+                    <span class="username">Usuario</span>
+                    <span class="rol">Estudiante</span>
+                </div>
+            </button>
+
+            <div class="desplegable" id="desplegable">
+                <span class="titulo-desplegable">Opciones de sesión</span>
+                <button type="button">
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                    <span>Cerrar sesión</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <aside>
+            <div class="boton-principal">
+                <button type="button" onclick="mostrarForm()"><i class="fa-solid fa-plus"></i> Clase</button>
+            </div>
+
+            <div class="separador"></div>
+
+            <div class="botones-secundarios">
+
+                <button type="button"
+                    style="background-color: rgba(38, 38, 38, 0.1); color: #262626; border-left: 3px solid #262626;"
+                    onclick="inicio()"><i class="fi fi-rr-home"></i> Inicio</button>
+                <button type="button"><i class="fi fi-rr-book"></i> Biblioteca personal</button>
+            </div>
+
+            <div class="separador"></div>
+
+            <div class="botones-clases">
+                {%for clase in clases%}
+                <button type="button" onclick="temas('{{ clase.ID_clase }}')"><i class="fi fi-rr-chalkboard-user"></i>
+                    {{clase.nombre_clase}}</button>
+                {% endfor %}
+            </div>
+        </aside>
+        <section class="panel-principal">
+            <nav>
+                <a>Clases</a>
+            </nav>
+            <div class="contenido-principal">
+
+                {%for clase in clases%}
+                <div class="tarjeta-clase">
+                    <div class="contenido" id="valor" data-id="{{clase.ID_clase}};"
+                        onclick="temas('{{ clase.ID_clase }}')">
+                        <!--Se peude colocar imagenes aqui con la etiqueta img-->
+                        <img src="{{clase.fondo_clase}}" alt="">
+                    </div>
+
+                    <div class="titulo" style="background-color: {{clase.color_clase}};">
+                        <div class="titulo-clase" onclick="temas('{{ clase.ID_clase }}')">
+                            <span>{{clase.nombre_clase}}</span>
+                        </div>
+                        <div class="opciones-clase">
+                            <i class="fa-solid fa-ellipsis-vertical"
+                                style="background-color: {{clase.color_clase}};"></i>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+
+            </div>
+        </section>
+    </main>
+
+    <!--
+        =============================INICIO - FORM UNIRSE CLASE=============================
+    -->
+
+    <div class="fondo-form" style="display: none;">
+        <section class="form-unirse-clase" style="display: none;">
+            <form action="/clases/unirse" method="POST">
+                <div class="encabezado-form">
+                    <span>Únete a una clase</span>
+                </div>
+                <div class="contenido-form">
+                    <label for="codigo">Código de la clase:</label>
+                    <input type="text" name="codigo" id="codigo" maxlength="6" placeholder="Introduce el código"
+                        autocomplete="off">
+
+                    <div class="botones-form">
+                        <button type="button" name="cancelar" id="cancelar" onclick="ocultarForm()">Cancelar</button>
+                        <button type="submit" name="unirme" id="unirme" onclick="unirse()" disabled>Unirme</button>
+                    </div>
+                </div>
+            </form>
+        </section>
+    </div>
+
+    <!--
+        =============================FIN - FORM UNIRSE CLASE=============================
+    -->
+</body>
+
+<script>
+    const fondoSection = document.querySelector('.fondo-form');
+    const formSection = document.querySelector('.form-unirse-clase');
+    function mostrarForm() {
+        fondoSection.style.display = 'block';
+        formSection.style.display = 'block';
+    }
+    function ocultarForm() {
+        fondoSection.style.display = 'none';
+        formSection.style.display = 'none';
+    }
+    function crearClase() {
+        window.location.href = "/clases/unirse";
+    }
+
+    function temas(idClase) {
+        window.location.href = "/temas/" + idClase;
+    }
+    function inicio() {
+        window.location.href = "/clases";
+    }
+    /*HABILITAR BOTON UNIRME DEL FORM*/
+    document.addEventListener('DOMContentLoaded', function () {
+        const codigoInput = document.getElementById('codigo');
+        const unirmeButton = document.getElementById('unirme');
+
+        codigoInput.addEventListener('input', function () {
+            if (codigoInput.value.length === 6) {
+                unirmeButton.disabled = false;
+                unirmeButton.style.backgroundColor = 'rgba(55, 67, 85, 1)';
+                unirmeButton.style.color = 'rgba(255, 255, 255, 1)';
+                unirmeButton.style.cursor = 'pointer';
+            } else {
+                unirmeButton.disabled = true;
+                unirmeButton.style.backgroundColor = 'rgba(55, 67, 85, 0.3)';
+                unirmeButton.style.color = 'rgba(255, 255, 255, 0.6)';
+                unirmeButton.style.cursor = 'default';
+            }
+        });
+    });
+
+    /*DESPLEGAR EL BOTON DE CERRAR SESION*/
+    document.addEventListener("DOMContentLoaded", function () {
+        const profileButton = document.getElementById("perfil");
+        const profileDropdown = document.getElementById("desplegable");
+
+        profileButton.addEventListener("click", function () {
+            if (profileDropdown.classList.contains("show")) {
+                profileDropdown.classList.remove("show");
+            } else {
+                profileDropdown.classList.add("show");
+            }
+        });
+
+        // Close dropdown if clicked outside
+        document.addEventListener("click", function (event) {
+            if (!profileButton.contains(event.target) && !profileDropdown.contains(event.target)) {
+                profileDropdown.classList.remove("show");
+            }
+        });
+    });
+
+</script>
+
+</html>

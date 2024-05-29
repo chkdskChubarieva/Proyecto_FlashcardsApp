@@ -1,0 +1,59 @@
+main section .contenido-principal {
+    display: flex;
+    align-content: flex-start;
+    flex-wrap: wrap;
+    overflow-y: auto;
+    padding: 30px;
+}
+
+.contenido-principal .tarjeta-flashcard {
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    height: 150px;
+    margin: 0px 20px 20px 0px;
+    border-radius: 10px;
+    background-color: #5E8D74;
+    color: #FFFFFF;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    box-shadow: 0px 2px rgba(0, 0, 0, 0.2);
+    box-sizing: border-box;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.contenido-principal .tarjeta-flashcard:hover {
+    background-color: rgba(94, 141, 116, 0.9);
+    border: 1px solid #F5F5F5;
+}
+
+.contenido-principal .tarjeta-flashcard .indice {
+    display: flex;
+    width: 100%;
+    height: 35px;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid #FFFFFF;
+    font-weight: bold;
+    gap: 10px;
+}
+
+.indicador-estado { /*STYLE COMPARTIDO CON "ESTADO (OPCIONES LATERALES)" DE: tarjeta-flashcard.css*/
+    width: 12px;
+    height: 12px;
+    border: 1px solid #F5F5F5;
+    border-radius: 10px;
+}
+
+.contenido-principal .tarjeta-flashcard .pregunta {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    padding: 15px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    box-sizing: border-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

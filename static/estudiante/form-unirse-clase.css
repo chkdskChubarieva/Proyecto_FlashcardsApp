@@ -1,0 +1,124 @@
+.form-unirse-clase {
+    width: 400px;
+    height: 200px;
+    border-radius: 10px;
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+}
+
+.fondo-form {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: 1;
+}
+
+.form-unirse-clase form {
+    width: 100%;
+    height: 100%;
+}
+
+.form-unirse-clase form .encabezado-form {
+    display: flex;
+    width: 100%;
+    height: 45px;
+    align-items: center;
+    padding: 0px 15px;
+    background-color: #374355;
+    box-sizing: border-box;
+}
+
+.form-unirse-clase form .encabezado-form span {
+    font-size: 18px;
+    font-weight: 600;
+    color: #FFFFFF;
+    cursor: default;
+}
+
+.form-unirse-clase form .contenido-form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 155px;
+    padding: 10px 25px;
+    background-color: #F5F5F5;
+    box-sizing: border-box;
+}
+
+.form-unirse-clase form .contenido-form label {
+    font-size: 18px;
+    font-weight: 600;
+    color: #262626;
+}
+
+.form-unirse-clase form .contenido-form input[type='text'] {
+    width: 100%;
+    height: 40px;
+    font-family: "Nunito Sans", sans-serif;
+    font-size: 16px;
+    padding: 0px 10px;
+    margin: 10px 0px;
+    border-radius: 8px;
+    outline: none;
+    color: #262626;
+    background-color: rgba(55, 67, 85, 0.1);
+    outline: 1px solid rgba(55, 67, 85, 0.4);
+    border: none;
+    box-sizing: border-box;
+}
+
+.form-unirse-clase form .contenido-form input[type='text']::placeholder {
+    color: #999999;
+    font-family: "Nunito Sans", sans-serif;
+}
+
+.form-unirse-clase form .contenido-form input[type='text']:focus {
+    outline: 1px solid #374355;
+}
+
+.form-unirse-clase form .botones-form {
+    display: flex;
+    width: 100%;
+    justify-content: end;
+    gap: 10px;
+    margin: 10px 0px;
+    box-sizing: border-box;
+}
+
+.form-unirse-clase form .botones-form button[type='button'] {
+    width: 120px;
+    height: 30px;
+    font-size: 15px;
+    font-family: "Nunito Sans", sans-serif;
+    color: rgba(38, 38, 38, 0.7);
+    border-radius: 6px;
+    background-color: transparent;
+    border: 1px solid rgba(38, 38, 38, 0.4);
+    transition: ease 0.3s;
+    cursor: pointer;
+}
+
+.form-unirse-clase form .botones-form button[type='submit'] {
+    width: 120px;
+    height: 30px;
+    font-size: 15px;
+    font-family: "Nunito Sans", sans-serif;
+    font-weight: 600;
+    border-radius: 6px;
+    border: none;
+    background-color: rgba(55, 67, 85, 0.3);
+    color: rgba(255, 255, 255, 0.6);
+    transition: ease 0.3s;
+    cursor: default;
+}
+
+.form-unirse-clase form .botones-form button[type='button']:hover {
+    color: rgba(38, 38, 38, 0.9);
+    border: 1px solid rgba(38, 38, 38, 0.9);
+}

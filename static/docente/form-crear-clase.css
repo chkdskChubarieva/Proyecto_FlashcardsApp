@@ -1,0 +1,218 @@
+.form-crear-clase {
+    width: 800px;
+    height: 480px;
+    border-radius: 10px;
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.fondo-form-crear-clase {
+    position: fixed;
+    inset: 0;
+    margin: auto;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: 1;
+}
+
+.form-crear-clase form {
+    width: 100%;
+    height: 100%;
+}
+
+.form-crear-clase form .encabezado-form {
+    display: flex;
+    width: 100%;
+    height: 45px;
+    align-items: center;
+    padding: 0px 15px;
+    background-color: #374355;
+    box-sizing: border-box;
+}
+
+.form-crear-clase form .encabezado-form span {
+    font-size: 18px;
+    font-weight: 600;
+    color: #FFFFFF;
+    cursor: default;
+}
+
+.form-crear-clase form .contenido-form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 435px;
+    padding: 10px 25px;
+    background-color: #F5F5F5;
+    box-sizing: border-box;
+}
+
+.form-crear-clase form .contenido-form .titulo-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-crear-clase form .contenido-form label {
+    font-size: 18px;
+    font-weight: 600;
+    color: #262626;
+}
+
+.form-crear-clase form .contenido-form .titulo-form input {
+    width: 100%;
+    height: 40px;
+    font-family: "Nunito Sans", sans-serif;
+    font-size: 16px;
+    padding: 0px 10px;
+    margin: 10px 0px;
+    border-radius: 8px;
+    outline: none;
+    color: #262626;
+    background-color: transparent;
+    outline: 1px solid rgba(55, 67, 85, 0.4);
+    border: none;
+    box-sizing: border-box;
+}
+
+.form-crear-clase form .contenido-form .titulo-form input::placeholder {
+    color: #999999;
+    font-family: "Nunito Sans", sans-serif;
+}
+
+.form-crear-clase form .contenido-form .titulo-form input:focus {
+    outline: 1px solid #374355;
+}
+
+.form-crear-clase form .contenido-form .fondo-form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.form-crear-clase form .contenido-form .fondo-form .fondo-form-opciones {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    margin: 10px 0px;
+}
+
+.form-crear-clase form .contenido-form .fondo-form .fondo-form-opciones input {
+    display: none;
+    box-sizing: border-box;
+}
+
+.form-crear-clase form .contenido-form .fondo-form .fondo-form-opciones img {
+    width: 170px;
+    height: auto;
+    cursor: pointer;
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+
+.form-crear-clase form .contenido-form .fondo-form .fondo-form-opciones input:checked+label img {
+    outline: 4px solid #00b7ff;
+}
+
+.form-crear-clase form .contenido-form .color-form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.form-crear-clase form .contenido-form .color-form .color-form-opciones {
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+    margin: 10px 0px;
+}
+
+.form-crear-clase form .contenido-form .color-form .color-form-opciones input {
+    display: none;
+    box-sizing: border-box;
+}
+
+.form-crear-clase form .contenido-form .color-form .color-form-opciones label {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+
+.form-crear-clase form .contenido-form .color-form .color-form-opciones .color1 {
+    background-color: #374355;
+}
+
+.form-crear-clase form .contenido-form .color-form .color-form-opciones .color2 {
+    background-color: #5E8D74;
+}
+
+.form-crear-clase form .contenido-form .color-form .color-form-opciones .color3 {
+    background-color: #A46E6E;
+}
+
+.form-crear-clase form .contenido-form .color-form .color-form-opciones .color4 {
+    background-color: #8D7D5E;
+}
+
+.form-crear-clase form .contenido-form .color-form .color-form-opciones .color5 {
+    background-color: #363636;
+}
+
+
+
+.form-crear-clase form .contenido-form .color-form .color-form-opciones input:checked+label {
+    border: 4px solid #00b7ff;
+}
+
+
+
+.form-crear-clase form .contenido-form .botones-form {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    margin: 10px 0px 0px 0px;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-crear-clase form .contenido-form .botones-form button {
+    width: 50%;
+    height: 45px;
+    font-family: "Nunito Sans", sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 10px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    transition: 0.1s ease;
+}
+
+.form-crear-clase form .contenido-form .botones-form button[type="button"] {
+    border: 1px solid rgba(38, 38, 38, 0.4);
+    background-color: transparent;
+    color: rgba(38, 38, 38, 0.8);
+}
+
+.form-crear-clase form .contenido-form .botones-form button[type="button"]:hover {
+    color: rgba(38, 38, 38, 1);
+    border: 1px solid rgba(38, 38, 38, 0.9);
+}
+
+.form-crear-clase form .contenido-form .botones-form button[type="submit"] {
+    background-color: #374355;
+    color: #FFFFFF;
+}
+
+.form-crear-clase form .contenido-form .botones-form button[type="submit"]:hover {
+    background-color: rgba(55, 67, 85, 0.9);
+}
