@@ -1,0 +1,85 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flashcards - FlashcardsApp</title>
+
+    <link rel="stylesheet" href="plantilla.css">
+    <link rel="stylesheet" href="tarjeta-flashcard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap');
+        @import url('https://cdn-uicons.flaticon.com/2.3.0/uicons-regular-rounded/css/uicons-regular-rounded.css');
+        @import url('https://cdn-uicons.flaticon.com/2.3.0/uicons-solid-rounded/css/uicons-solid-rounded.css');
+        @import url('https://cdn-uicons.flaticon.com/2.3.0/uicons-bold-rounded/css/uicons-bold-rounded.css');
+    </style>
+    <script src="scormFunctions.js"></script>
+    <script src="index.js"></script>
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <i class="fi fi-sr-layers"></i>
+            <span>FlashcardsApp</span>
+        </div>
+    </header>
+
+    <div class="fondo">
+        <div class="contenedor-flashcards">
+            <!--FLASHCARD LADO RESPUESTA-->
+            <section class="flashcard-principal-respuesta">
+                <div class="flashcard-encabezado">
+                    <span>Respuesta</span>
+                    <div class="opciones"></div>
+                </div>
+                
+                <div class="flashcard-barra">
+                    <span id="respuesta"></span>
+                </div>
+
+                <div class="flashcard-contenido">
+                    <span id="respuestaFlashcard">Respuesta aquí</span>
+                    <button type="button" class="btn_siguiente" style="display: flex;" onclick="siguienteFlashcard()"><i class="fa-solid fa-arrow-right"></i>Siguiente</button>
+                </div>
+            </section>
+
+            <!--FLASHCARD LADO PREGUNTA-->
+            <section class="flashcard-principal-pregunta">
+                <div class="flashcard-encabezado">
+                    <span>Pregunta</span>
+                    <div class="opciones"></div>
+                </div>
+
+                <div class="flashcard-barra">
+                    <span id="pregunta">Responde la Flashcard!</span>
+                </div>
+
+                <div class="flashcard-contenido">
+                    <span id="preguntaFlashcard">Pregunta aquí</span>
+                    <form id="form-evaluacion" class="form-evaluacion">
+                        <input type="text" name="evaluacion" id="evaluacion" placeholder="Respuesta:">
+                        <button type="button" onclick="comparar()"><i class="fa-solid fa-arrow-right"></i></button>
+                    </form>
+                </div>
+            </section>
+        </div>
+    </div>
+    
+    <script >
+    
+    // Inicializar el API SCORM al cargar la página
+    window.onload = function() {
+        scormInitialize();
+    }
+
+    // Terminar la sesión SCORM al cerrar la página
+    window.onunload = function() {
+        scormTerminate();
+    }
+    </script>
+</body>
+</html>

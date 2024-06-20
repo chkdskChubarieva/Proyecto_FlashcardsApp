@@ -13,21 +13,15 @@
 
 <body>
     <header>
-        <div class="logo">
+        <div class="titulo" onclick="home()">
             <i class="fi fi-sr-layers"></i>
+            <span>FlashcardsApp</span>
         </div>
-        <div class="app-title">
-            <label for="nombre">FlashcardsApp</label>
-        </div>
-        <div class="inicio">
-            <button href="./" class="inicio" onclick="home()">Inicio</button>
-        </div>
-        <div class="form-button">
-            <div class="login">
-                <button href="login.html" class="login" onclick="login()">Iniciar Sesión</button>
-            </div>
-        </div>
+
+        <div class="opciones">
+            <button href="login.html" class="login" onclick="login()">Iniciar sesión</button>        </div>
     </header>
+    
     <main>
         <form action="/register" method="POST">
             <section class="logo">

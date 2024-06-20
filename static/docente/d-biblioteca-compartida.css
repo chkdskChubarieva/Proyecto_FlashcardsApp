@@ -1,0 +1,131 @@
+main section .contenido-principal {
+    display: flex;
+    flex-direction: column;
+    padding: 30px 50px;
+    overflow-y: auto;
+}
+
+.contenido-principal .tema-flashcards {
+    width: 100%;
+    position: relative;
+}
+
+.contenido-principal .tema-flashcards button {
+    position: absolute;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 5px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    background-color: #5E8D74;
+    color: #FFFFFF;
+    cursor: pointer;
+    transition: background-color all 0.1s ease-in-out;
+    right: 0;
+    margin: 10px 50px;
+}
+
+.contenido-principal .tema-flashcards button:hover {
+    background-color: rgba(94, 141, 116, 0.9);
+}
+
+.contenido-principal .tema-flashcards .titulo {
+    display: flex;
+    width: 100%;
+    height: 50px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0px 20px;
+    border-radius: 10px 10px 0px 0px;    font-size: 20px;
+    font-weight: bold;
+    color: #363636;
+    border-bottom: 1px solid rgb(54, 54, 54, 0.6);
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.contenido-principal .tema-flashcards .titulo:hover {
+    background-color: rgb(94, 141, 116, 0.2);
+    border-radius: 10px;
+    border-bottom: 1px solid transparent;
+}
+
+.contenido-principal .tema-flashcards .titulo .botones {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.contenido-principal .tema-flashcards .contenedor-flashcards {
+    display: flex;
+    width: 100%;
+    align-content: flex-start;
+    flex-wrap: wrap;
+    padding: 20px;
+
+    max-height: none;
+    overflow: hidden;
+    transition: height 0.2s ease, padding 0.2s ease;
+    height: auto;
+}
+
+.contenido-principal .tarjeta-flashcard {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    height: 150px;
+    margin: 0px 20px 20px 0px;
+    border-radius: 10px;
+    background-color: #5E8D74;
+    color: #FFFFFF;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    box-shadow: 0px 2px rgba(0, 0, 0, 0.2);
+    box-sizing: border-box;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.contenido-principal .tarjeta-flashcard:hover {
+    background-color: rgba(94, 141, 116, 0.9);
+    border: 1px solid #F5F5F5;
+}
+
+.contenido-principal .tarjeta-flashcard #checkbox-flashcard {
+    position: absolute;
+    right: 0;
+    width: 35px;
+    height: 35px;
+    transform: scale(0.5);
+}
+
+.contenido-principal .tarjeta-flashcard .indice {
+    display: flex;
+    width: 100%;
+    height: 35px;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid #FFFFFF;
+    font-weight: bold;
+    gap: 10px;
+}
+
+.indicador-estado { /*STYLE COMPARTIDO CON "ESTADO (OPCIONES LATERALES)" DE: tarjeta-flashcard.css*/
+    width: 12px;
+    height: 12px;
+    border: 1px solid #F5F5F5;
+    border-radius: 10px;
+}
+
+.contenido-principal .tarjeta-flashcard .pregunta {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    padding: 15px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    box-sizing: border-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

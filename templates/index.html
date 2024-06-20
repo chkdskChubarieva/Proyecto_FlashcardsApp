@@ -2,52 +2,188 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Inicio - FlashcardsApp</title>
-  <link rel="icon" href="../static/images/icon.png">
-  <link rel="stylesheet" href="../static/style-index.css">
-  <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.3.0/uicons-solid-rounded/css/uicons-solid-rounded.css'>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio - FlashcardsApp</title>
+    <link rel="icon" href="../static/images/icon.png">
+    <link rel="stylesheet" href="../static/style-index.css">
+    <link rel='stylesheet'
+        href='https://cdn-uicons.flaticon.com/2.3.0/uicons-solid-rounded/css/uicons-solid-rounded.css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 
 <body>
+    <header class="hidden">
+        <div class="titulo" onclick="home()">
+            <i class="fi fi-sr-layers"></i>
+            <span>FlashcardsApp</span>
+        </div>
 
-  <header>
-    <div class="logo">
-      <i class="fi fi-sr-layers"></i>
-    </div>
-    <div class="app-title">
-      <label for="nombre">FlashcardsApp</label>
-    </div>
-    <div class="form-button">
-      <div class="register">
-        <button href="roles.html" class="register" id="registrar" onclick="roles()">Registrarse</button>
-      </div>
-      <div class="login">
-        <button href="login.html" class="login" onclick="login()">Iniciar Sesión</button>
-      </div>
-    </div>
-  </header>
+        <div class="opciones">
+            <button href="login.html" class="login" onclick="login()">Iniciar sesión</button>
+            <button href="roles.html" class="register" id="registrar" onclick="roles()">Registrarse</button>
+        </div>
+    </header>
+    <main>
+        <section class="informacion hidden">
+            <div class="titulo">
+                <h1>FlashcardsApp</h1>
+            </div>
 
-  <div class="page-info">
-    <h1>Flashcards App</h1>
-    <p>Bienvenido a Flashcards App</p>
-    <p>• Crea tus flashcards</p>
-    <p>• Organiza tus flashcards por temas</p>
-    <p>• Evalúa tus avances</p>
-    <p>• Técnica de Repetición Espaciada (Active Recall)</p>
-  </div>
-  <button href="login.html" class="login-button" onclick="login()">Iniciar Sesión</button>
-  <button href="roles.html" class="register-button" onclick="roles()">Registrarse</button>
+            <div class="contenido">
+                <span>¡Bienvenido a FlashcardsApp!</span>
+                <ul>
+                    <li>Crea tus flashcards</li>
+                    <li>Organiza tus flashcards por temas</li>
+                    <li>Evalúa tus avances</li>
+                    <li>Técnica de repeticion espaciada (Active recall)</li>
+                </ul>
+            </div>
+
+            <div class="botones">
+                <button href="login.html" class="login-button" onclick="login()">Iniciar sesión</button>
+                <button href="roles.html" class="register-button" onclick="roles()">Registrarse</button>
+            </div>
+        </section>
+
+        <section class="carrusel">
+
+            <div class="contenedor">
+                <div class="carrusel-imagenes">
+                    <img src="../static/images/carrusel/img-1.png" alt="">
+                    <img src="../static/images/carrusel/img-2.png" alt="">
+                    <img src="../static/images/carrusel/img-3.png" alt="">
+                    <img src="../static/images/carrusel/img-4.png" alt="">
+                    <img src="../static/images/carrusel/img-5.png" alt="">
+                    <img src="../static/images/carrusel/img-6.png" alt="">
+                    <img src="../static/images/carrusel/img-7.png" alt="">
+                    <!--AGREGAR IMAGENES AL CARRUSEL AQUI-->
+                </div>
+
+            </div>
+
+            <div class="botones">
+                <button class="izq">&#10094;</button>
+                <button class="der">&#10095;</button>
+            </div>
+
+            <div class="carrusel-indicadores"></div>
+
+        </section>
+
+    </main>
 </body>
-<script>
-  function login() {
-    window.location.href = './vista_login';
-  }
 
-  function roles() {
-    window.location.href = './roles';
-  }
+<script>
+    function home() {
+        window.location.href = './';
+    }
+
+    function login() {
+        window.location.href = './vista_login';
+    }
+
+    function roles() {
+        window.location.href = './roles';
+    }
+
+    /*INICIO - CARRUSEL*/
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const carouselImages = document.querySelector('.carrusel-imagenes');
+        const images = document.querySelectorAll('.carrusel-imagenes img');
+        const izqButton = document.querySelector('.izq');
+        const derButton = document.querySelector('.der');
+        const indicatorsContainer = document.querySelector('.carrusel-indicadores');
+
+        let index = 0;
+        let intervalTime = 3000; //ajustar esto para modificar el tiempo del carrusel automatico
+        let intervalId;
+
+        function showImage(index) {
+            const imageWidth = images[0].clientWidth;
+            const offset = -index * imageWidth;
+            carouselImages.style.transform = `translateX(${offset}px)`;
+            updateIndicators();
+        }
+
+        function derImage() {
+            index = (index + 1) % images.length;
+            showImage(index);
+        }
+
+        function izqImage() {
+            index = (index - 1 + images.length) % images.length;
+            showImage(index);
+        }
+
+        function startCarousel() {
+            clearInterval(intervalId);
+            intervalId = setInterval(derImage, intervalTime);
+        }
+
+
+        function createIndicators() {
+            indicatorsContainer.innerHTML = '';
+            for (let i = 0; i < images.length; i++) {
+                const indicator = document.createElement('div');
+                indicator.classList.add('indicador');
+                if (i === index) indicator.classList.add('active');
+                indicator.addEventListener('click', () => {
+                    index = i;
+                    showImage(index);
+                    startCarousel();
+                });
+                indicatorsContainer.appendChild(indicator);
+            }
+        }
+
+        function updateIndicators() {
+            const indicators = document.querySelectorAll('.carrusel-indicadores .indicador');
+            indicators.forEach((indicator, i) => {
+                indicator.classList.toggle('active', i === index);
+            });
+        }
+
+        derButton.addEventListener('click', () => {
+            derImage();
+            startCarousel();
+        });
+
+        izqButton.addEventListener('click', () => {
+            izqImage();
+            startCarousel();
+        });
+
+        createIndicators();
+        startCarousel();
+    });
+    /*FIN - CARRUSEL*/
+
+    document.addEventListener("DOMContentLoaded", function() {
+        // Seleccionar todos los elementos con la clase 'hidden'
+        const hiddenElements = document.querySelectorAll('.hidden');
+
+        // Añadir un pequeño retraso para cada elemento para crear un efecto escalonado
+        hiddenElements.forEach((element, index) => {
+            setTimeout(() => {
+                element.classList.remove('hidden');
+                element.classList.add('visible');
+            }, index * 200); // Ajustar el tiempo de retraso si es necesario
+        });
+
+        // Para cargar las imágenes del carrusel de manera suave
+        const carouselImages = document.querySelectorAll('.carrusel-imagenes img');
+        carouselImages.forEach((img, index) => {
+            img.onload = () => {
+                setTimeout(() => {
+                    img.classList.add('visible');
+                }, index * 200);
+            };
+        });
+    });
+
+    
 </script>
 
 </html>

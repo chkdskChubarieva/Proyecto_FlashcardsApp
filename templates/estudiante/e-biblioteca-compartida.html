@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biblioteca compartida - FlashcardsApp</title>
+    <link rel="stylesheet" href="../../static/plantilla.css">
+    <link rel="stylesheet" href="../../static/docente/d-biblioteca-compartida.css">
+    <link rel="stylesheet" href="../../static/estudiante/tarjeta-flashcard.css">
+    <link rel="icon" href="../../static/images/icon.png">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap');
+        @import url('https://cdn-uicons.flaticon.com/2.3.0/uicons-regular-rounded/css/uicons-regular-rounded.css');
+        @import url('https://cdn-uicons.flaticon.com/2.3.0/uicons-solid-rounded/css/uicons-solid-rounded.css');
+        @import url('https://cdn-uicons.flaticon.com/2.3.0/uicons-bold-rounded/css/uicons-bold-rounded.css');
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo" onclick="inicio()">
+            <i class="fi fi-sr-layers"></i>
+            <span>FlashcardsApp</span>
+        </div>
+
+        <div class="barra-busqueda"></div>
+
+        <div class="opciones">
+            <button type="button" class="usuario" id="perfil"><i class="fa-regular fa-user"></i>
+                <div class="info-usuario">
+                    <span class="username">{{logged_user.nombre_usuario}}</span>
+                    <span class="rol">Estudiante</span>
+                </div>
+            </button>
+
+            <div class="desplegable" id="desplegable">
+                <span class="titulo-desplegable">Opciones de sesión</span>
+                <button type="button" onclick="cerrar_sesion()">
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                    <span>Cerrar sesión</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <aside>
+            <div class="boton-principal">
+                <!--<button type="button" onclick="mostrarForm()"><i class="fa-solid fa-plus"></i> Flashcard</button>-->
+            </div>
+
+            <div class="separador"></div>
+
+            <div class="botones-secundarios">
+
+                <button type="button" onclick="inicio()"><i class="fi fi-rr-home"></i> Inicio</button>
+                <button type="button"><i class="fi fi-rr-book"></i> Biblioteca personal</button>
+                <button type="button"><i class="fi fi-rr-books"></i> Biblioteca compartida</button>
+                <!--<button type="button" onclick="alumnos()"><i class="fi fi-rr-users"></i> Alumnos</button>-->
+            </div>
+
+            <div class="separador"></div>
+
+            <div class="botones-clases">
+                {%for clase in clases%}
+                {%if clase_seleccionada.ID_clase == clase.ID_clase%}
+                <button type="button"
+                    style="background-color: rgba(38, 38, 38, 0.1); color: #262626; border-left: 3px solid #262626;"
+                    onclick="temas('{{ clase.ID_clase }}')"><i class="fi fi-rr-chalkboard-user"></i>
+                    {{clase.nombre_clase}}</button>
+                {%else%}
+                <button type="button" onclick="temas('{{ clase.ID_clase }}')"><i
+                        class="fi fi-rr-chalkboard-user"></i>{{clase.nombre_clase}}</button>
+                {% endif %}
+                {% endfor %}
+            </div>
+        </aside>
+        <section class="panel-principal">
+            <nav>
+                <div class="navbar">
+                    <a onclick="inicio()">Clases</a>
+                    <p> > </p>
+                    <a class="link-temas"
+                        onclick="temas('{{clase_seleccionada.ID_clase}}')">{{clase_seleccionada.nombre_clase}}</a>
+                    <p> > </p>
+                    <a>Biblioteca compartida</a>
+                </div>
+
+                <div class="botones">
+                    <button type="button" onclick="practicar_flashcards('flash_compartida', 'practicar')">Practicar flashcards</button>
+                </div>
+            </nav>
+            <div class="contenido-principal">
+            {%for tema in temas %}
+                <div class="tema-flashcards">
+                    <button onclick="practicar_temas('{{tema.ID_tema}}')" type="button" onclick>Practicar tema</button>
+                    <div class="titulo">
+                        {{tema.nombre_tema}} 
+                        <div class="botones">
+                            <i class="fa-solid fa-angle-down"></i>
+                        </div>                        
+                    </div>
+                    <div class="contenedor-flashcards">
+                        {% for flashcard in flashcards_compartidas %} 
+                        {%if tema.ID_tema == flashcard.ID_tema%}
+                        <div class="tarjeta-flashcard" onclick="abrir('estudiante', '{{ flashcard.ID_flashcard }}')">
+                            <div class="indice">
+                                <p>#{{loop.index}}</p>
+                                {%if flashcard.estado == 'privado'%}
+                                <div class="indicador-estado" style="background-color: #CA8686;"></div>
+                                {%endif%}
+                                {%if flashcard.estado == 'revision'%}
+                                <div class="indicador-estado" style="background-color: #E0C975;"></div>
+                                {%endif%}
+                                {%if flashcard.estado == 'compartido'%}
+                                <div class="indicador-estado" style="background-color: #86CAA1;"></div>
+                                {%endif%}
+                            </div>
+                            <div class="pregunta">
+                                <p>
+                                    {{flashcard.pregunta}}
+                                </p>
+                            </div>
+                        </div>
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            {%endfor%}
+            </div>
+        </section>
+    </main>
+
+    <!--
+        =============================INICIO - TARJETA FLASHCARD=============================
+    -->
+
+    {%if mostrar%}
+    <div class="fondo">
+        <div class="contenedor-flashcards">
+            <!--FLASHCARD LADO RESPUESTA-->
+            <section class="flashcard-principal-respuesta">
+                <div class="flashcard-encabezado">
+                    <span>Respuesta</span>
+                    <div class="opciones">
+                        <i class="fa-solid fa-rotate" onclick="vuelta()"></i>
+                        <i class="fa-solid fa-xmark" onclick="salir()"></i>
+                    </div>
+                </div>
+
+                <div class="flashcard-barra">
+
+                    <!--<div class="barra-dificultad">
+                        <span>Dificultad:</span>
+                        <button type="button" name="dificultad" id="facil">Fácil</button>
+                        <button type="button" name="dificultad" id="medio">Medio</button>
+                        <button type="button" name="dificultad" id="dificil">Difícil</button>
+                    </div>-->
+
+                    <div class="info-tema">
+                        <div class="fila-1">
+                            <span class="estudiante">Estudiante:<p>{{usuario_compartido.nombre_usuario}}</p></span>
+                            <span class="tema">Tema:<p>{{tema_estudiante_compartido.nombre_tema}}</p></span>
+                        </div>
+                        <div class="fila-2">
+                            <span>{{resp}}</span>
+                        </div>                   
+                    </div>
+
+                    <div class="barra-botones">
+                        <!--{%if flashcard_compartida_seleccionada.estado == 'compartido'%}
+                        <button type="button" name="rechazar" onclick="seleccionar_estado('{{ flashcard_compartida_seleccionada.ID_flashcard }}', 'revision', 'flash_compartida')"><i class="fa-solid fa-xmark"></i>Revision</button>
+                        {%endif%}
+                        {%if flashcard_compartida_seleccionada.estado == 'revision'%}
+                        <button type="button" name="compartir" onclick="seleccionar_estado('{{ flashcard_compartida_seleccionada.ID_flashcard }}', 'compartido', 'flash_compartida')"><i class="fa-solid fa-check"></i>Compartir</button>
+                        {%endif%}
+                        
+                        <button type="button" name="compartir"><i class="fa-solid fa-check"></i>Compartir</button>-->
+                    </div>
+                </div>
+
+                <div class="flashcard-contenido">
+                    <span>{{flashcard_compartida_seleccionada.respuesta}}</span>
+                    {%if practica_habilitado==True%}
+                        {%if temas_boolean==True%}
+                            <button type="button" onclick="practicar_temas_siguiente('{{tema_estudiante_compartido.ID_tema}}')"><i class="fa-solid fa-arrow-right"></i>Siguiente</button>
+                            <form action="/comparar/flash_compartida/{{flashcard_compartida_seleccionada.ID_flashcard}}" method="post" class="form-evaluacion" autocomplete="off">
+                            </form>
+                        {%else%}
+                            <button type="button" onclick="practicar_flashcards('flash_compartida','comparar')"><i class="fa-solid fa-arrow-right"></i>Siguiente</button>
+                            <form action="/comparar/flash_compartida/{{flashcard_compartida_seleccionada.ID_flashcard}}" method="post" class="form-evaluacion" autocomplete="off">
+                            </form>
+                        {%endif%}
+                    {%endif%}    
+                </div>
+            </section>
+
+            <!--FLASHCARD LADO PREGUNTA-->
+            <section class="flashcard-principal-pregunta">
+                <div class="flashcard-encabezado">
+                    <span>Pregunta</span>
+                    <div class="opciones">
+                        <i class="fa-solid fa-rotate" onclick="vuelta()"></i>
+                        <i class="fa-solid fa-xmark" onclick="salir()"></i>
+                    </div>
+                </div>
+
+                <div class="flashcard-barra">
+                    <!--<div class="barra-dificultad">
+                        <span>Dificultad:</span>
+                        <button type="button" name="dificultad" id="facil">Fácil</button>
+                        <button type="button" name="dificultad" id="medio">Medio</button>
+                        <button type="button" name="dificultad" id="dificil">Difícil</button>
+                    </div>-->
+
+                    <div class="info-tema">
+                        <div class="fila-1">
+                            <span class="estudiante">Estudiante:<p>{{usuario_compartido.nombre_usuario}}</p></span>
+                            <span class="tema">Tema:<p>{{tema_estudiante_compartido.nombre_tema}}</p></span>
+                        </div>
+                        <div class="fila-2">
+                            <span>{{resp}}</span>
+                        </div>                   
+                    </div>
+
+                    <div class="barra-botones">
+                        <!--{%if flashcard_compartida_seleccionada.estado == 'compartido'%}
+                        <button type="button" name="rechazar" onclick="seleccionar_estado('{{ flashcard_compartida_seleccionada.ID_flashcard }}', 'revision', 'flash_compartida')"><i class="fa-solid fa-xmark"></i>Revision</button>
+                        {%endif%}
+                        {%if flashcard_compartida_seleccionada.estado == 'revision'%}
+                        <button type="button" name="compartir" onclick="seleccionar_estado('{{ flashcard_compartida_seleccionada.ID_flashcard }}', 'compartido', 'flash_compartida')"><i class="fa-solid fa-check"></i>Compartir</button>
+                        {%endif%}
+                        <button type="button" name="compartir"><i class="fa-solid fa-check"></i>Compartir</button>-->
+                    </div>
+                </div>
+
+                <div class="flashcard-contenido">
+                    <span>{{flashcard_compartida_seleccionada.pregunta}}</span>
+                    {%if practica_habilitado==True%}
+                        {%if temas_boolean==True%}
+                            <button type="button" onclick="practicar_temas_siguiente('{{tema_estudiante_compartido.ID_tema}}')"><i class="fa-solid fa-arrow-right"></i>Siguiente</button>
+                            <form action="/comparar/flash_compartida/{{flashcard_compartida_seleccionada.ID_flashcard}}" method="post" class="form-evaluacion" autocomplete="off">
+                            </form>
+                        {%else%}
+                            <button type="button" onclick="practicar_flashcards('flash_compartida','comparar')"><i class="fa-solid fa-arrow-right"></i>Siguiente</button>
+                            <form action="/comparar/flash_compartida/{{flashcard_compartida_seleccionada.ID_flashcard}}" method="post" class="form-evaluacion" autocomplete="off">
+                            </form>
+                        {%endif%}
+                    {%endif%}    
+                </div>
+            </section>
+        </div>
+
+        <!--FLASHCARD OPCIONES LATERALES-->
+        <section class="flashcard-opciones-laterales">
+            <div class="calificacion">
+                <span>Calificación:</span>
+                <div class="estrellas">
+                    <i class="fa-solid fa-star" data-value="1"></i>
+                    <i class="fa-solid fa-star" data-value="2"></i>
+                    <i class="fa-solid fa-star" data-value="3"></i>
+                    <i class="fa-solid fa-star" data-value="4"></i>
+                    <i class="fa-solid fa-star" data-value="5"></i>
+                </div>
+            </div>
+
+
+            <div class="dificultad">
+                <span>Dificultad:</span>
+                {%if flashcard_compartida_seleccionada.dificultad=='facil'%}
+                <div class="cuadro-dificultad" style="background-color: #86CAA1;">Fácil</div>
+                {%endif%}
+                {%if flashcard_compartida_seleccionada.dificultad=='medio'%}
+                <div class="cuadro-dificultad" style="background-color: #E0C975;">Medio</div>
+                {%endif%}
+                {%if flashcard_compartida_seleccionada.dificultad=='dificil'%}
+                <div class="cuadro-dificultad" style="background-color: #CA8686;">Difícil</div>
+                {%endif%}
+            </div>
+
+            <div class="comentario">
+                <span>Comentario docente:</span>
+                <div class="comentario-docente"></div>
+            </div>
+
+            <div class="estado">
+                <span>Estado:</span>
+                <div class="cuadro-estado">
+                    {%if flashcard_compartida_seleccionada.estado == 'privado'%}
+                    <div class="indicador-estado" style="background-color: #CA8686;"></div>
+                    Privado
+                    {%endif%}
+                    {%if flashcard_compartida_seleccionada.estado == 'revision'%}
+                    <div class="indicador-estado" style="background-color: #E0C975;"></div>
+                    En revision
+                    {%endif%}
+                    {%if flashcard_compartida_seleccionada.estado == 'compartido'%}
+                    <div class="indicador-estado" style="background-color: #86CAA1;"></div>
+                    Compartido
+                    {%endif%}
+                </div>
+            </div>
+
+        </section>
+    </div>
+    {% endif %}
+
+    <!--
+        =============================FIN - TARJETA FLASHCARD=============================
+    -->
+
+</body>
+
+<script>
+    const fondoSection = document.querySelector('.fondo-form');
+    const formSection = document.querySelector('.form-flashcard');
+    function practicar_flashcards(panel, boton) {
+        window.location.href = "/practicar_flashcards/" + panel + "/" + boton;
+    }
+    function practicar_temas(idTema) {
+        window.location.href = "/practicar_temas/" + idTema;
+    }
+
+    function practicar_temas_siguiente(idTema) {
+        window.location.href = "/practicar_temas_siguiente/" + idTema;
+    }
+
+    function temas(idClase) {
+        window.location.href = "/temas/" + idClase;
+    }
+
+    function abrir(rol, idFlash) {
+        window.location.href = "/seleccionar_resultado_flash/" + rol + "/" + idFlash;
+
+    }
+    function seleccionar_estado(idFlash, estado, panel) {
+        window.location.href = "/seleccionar_estado/" + "/" + idFlash + "/" + estado + "/" + panel;  
+    }
+
+    function crearFlash() {
+        window.location.href = "/flashcard/crear";
+    }
+
+    function mostrarForm() {
+        fondoSection.style.display = 'block';
+        formSection.style.display = 'block';
+    }
+    function ocultarForm() {
+        fondoSection.style.display = 'none';
+        formSection.style.display = 'none';
+    }
+    function vuelta() {
+        const preguntaSection = document.querySelector('.flashcard-principal-pregunta');
+        const respuestaSection = document.querySelector('.flashcard-principal-respuesta');
+
+        if (preguntaSection.style.display === 'none') {
+            preguntaSection.style.display = 'block';
+            respuestaSection.style.display = 'none';
+        } else {
+            preguntaSection.style.display = 'none';
+            respuestaSection.style.display = 'block';
+        }
+    }
+    function salir() {
+        window.location.href = "/biblioteca_compartida";
+    }
+    function cerrar_sesion() {
+        window.location.href = "/cerrar_sesion";
+    }
+    function inicio() {
+        window.location.href = "/clases";
+    }
+    function alumnos() {
+        window.location.href = "/lista_estudiantes";
+    }
+
+
+    /*DESPLEGAR EL BOTON DE CERRAR SESION*/
+    document.addEventListener("DOMContentLoaded", function () {
+        const profileButton = document.getElementById("perfil");
+        const profileDropdown = document.getElementById("desplegable");
+
+        profileButton.addEventListener("click", function () {
+            if (profileDropdown.classList.contains("show")) {
+                profileDropdown.classList.remove("show");
+            } else {
+                profileDropdown.classList.add("show");
+            }
+        });
+
+        // Close dropdown if clicked outside
+        document.addEventListener("click", function (event) {
+            if (!profileButton.contains(event.target) && !profileDropdown.contains(event.target)) {
+                profileDropdown.classList.remove("show");
+            }
+        });
+    });
+
+    //FUNCION DE ESTRELLAS, CALIFICAR FLASHCARD
+    document.addEventListener('DOMContentLoaded', () => {
+        const stars = document.querySelectorAll('.estrellas .fa-star');
+
+        stars.forEach(star => {
+            star.addEventListener('mouseover', handleMouseOver);
+            star.addEventListener('mouseout', handleMouseOut);
+            star.addEventListener('click', handleClick);
+        });
+
+        function handleMouseOver(event) {
+            const value = event.target.getAttribute('data-value');
+            highlightStars(value);
+        }
+
+        function handleMouseOut() {
+            clearStars();
+            const selectedStar = document.querySelector('.estrellas .fa-star.selected');
+            if (selectedStar) {
+                highlightStars(selectedStar.getAttribute('data-value'));
+            }
+        }
+
+        function handleClick(event) {
+            const value = event.target.getAttribute('data-value');
+            setRating(value);
+        }
+
+        function highlightStars(value) {
+            stars.forEach(star => {
+                if (star.getAttribute('data-value') <= value) {
+                    star.classList.add('highlight');
+                } else {
+                    star.classList.remove('highlight');
+                }
+            });
+        }
+
+        function clearStars() {
+            stars.forEach(star => {
+                star.classList.remove('highlight');
+            });
+        }
+
+        function setRating(value) {
+            stars.forEach(star => {
+                star.classList.remove('selected');
+                if (star.getAttribute('data-value') <= value) {
+                    star.classList.add('selected');
+                }
+            });
+        }
+    });
+
+    /*FUNCION DESPLEGAR TEMAS*/
+    document.addEventListener('DOMContentLoaded', function() {
+    const titulos = document.querySelectorAll('.titulo');
+
+    titulos.forEach(titulo => {
+        const contenido = titulo.nextElementSibling;
+        contenido.style.height = contenido.scrollHeight + "px"; // Asegura que el contenido esté desplegado por defecto
+
+        titulo.addEventListener('click', function() {
+            if (contenido.style.height === "0px" || contenido.style.height === "") {
+                contenido.style.height = contenido.scrollHeight + "px";
+                contenido.style.padding = "20px";
+            } else {
+                contenido.style.height = "0px";
+                contenido.style.padding = "0 20px";
+            }
+        });
+
+        // Al completar la transición, se ajusta la altura a "auto" para que el contenido se ajuste automáticamente
+        contenido.addEventListener('transitionend', function() {
+            if (contenido.style.height !== "0px") {
+                contenido.style.height = "auto";
+            }
+        });
+    });
+});
+
+</script>
+
+</html>

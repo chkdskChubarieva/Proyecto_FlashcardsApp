@@ -20,7 +20,6 @@
 }
 
 .flashcard-principal-pregunta {
-    /*CAMBIAR ESTE VALOR A NONE/BLOCK PARA OCULTAR/MOSTRAR LA FLASHCARD*/
     width: 750px;
     height: 420px;
     border-radius: 10px;
@@ -85,7 +84,7 @@
 .contenedor-flashcards .flashcard-barra {
     display: flex;
     width: 100%;
-    height: 45px;
+    height: 55px;  /*antes 45px*/
     padding: 0px 20px;
     justify-content: space-between;
     align-items: center;
@@ -139,6 +138,29 @@
     background-color: #ce7878;
 }
 
+.contenedor-flashcards .flashcard-barra .info-tema {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.contenedor-flashcards .flashcard-barra .info-tema .fila-1 {
+    display: flex;
+    gap: 20px;
+}
+
+
+.contenedor-flashcards .flashcard-barra .info-tema span {
+    display: flex;
+    font-size: 18px;
+    color: #363636;
+    gap: 5px;
+}
+
+.contenedor-flashcards .flashcard-barra .info-tema span p {
+    font-weight: 600;
+}
+
 .contenedor-flashcards .flashcard-barra .barra-botones {
     display: flex;
     gap: 10px;
@@ -165,7 +187,7 @@
 .flashcard-principal-pregunta .flashcard-contenido {
     display: flex;
     width: 100%;
-    height: 315px;
+    height: 305px; /*antes 315px*/
     padding: 25px;
     align-items: center;
     box-sizing: border-box;
@@ -184,6 +206,60 @@
     color: #f5f5f5;
     cursor: default;
 }
+
+.flashcard-principal-pregunta .flashcard-contenido button {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    align-items: center;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 10px 20px;
+    margin: 10px;
+    border-radius: 10px;
+    border: none;
+    bottom: 0;
+    right: 0;
+    background-color: #F5F5F5;
+    color: #464646;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+}
+
+.flashcard-principal-pregunta .flashcard-contenido button i {
+    font-size: 22px;
+}
+
+.flashcard-principal-pregunta .flashcard-contenido .form-evaluacion {
+    display: flex;
+    width: 530px;
+    position: absolute;
+    padding: 10px 20px;
+    bottom: 0;
+    left: 0;
+}
+
+.flashcard-principal-pregunta .flashcard-contenido .form-evaluacion input {
+    width: 450px;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 10px;
+    color: #363636;
+    border-radius: 10px;
+    border: 1px solid transparent;
+    outline: none;
+}
+
+.flashcard-principal-pregunta .flashcard-contenido .form-evaluacion button {
+    display: flex;
+    width: 30px;
+    height: 44px;
+    justify-content: center;
+    align-items: center;
+    color: #464646;
+}
+
+
 
 /*FIN - FLASHCARD PREGUNTA*/
 
@@ -265,6 +341,29 @@
     font-weight: bold;
     color: #5E8D74;
     cursor: default;
+}
+
+.flashcard-principal-respuesta .flashcard-contenido button {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    align-items: center;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 10px 20px;
+    margin: 10px;
+    border-radius: 10px;
+    border: none;
+    bottom: 0;
+    right: 0;
+    background-color: #5E8D74;
+    color: #F5F5F5;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+}
+
+.flashcard-principal-respuesta .flashcard-contenido button i {
+    font-size: 22px;
 }
 
 /*FIN - FLASHCARD RESPUESTA*/

@@ -8,7 +8,7 @@ if defined _OLD_CODEPAGE (
     "%SystemRoot%\System32\chcp.com" 65001 > nul
 )
 
-set VIRTUAL_ENV=C:\xampp\htdocs\ProyectoFlashcardsGit\Proyecto_FlashcardsApp\env
+set VIRTUAL_ENV=C:\Users\MSI\Desktop\GESTION_1-2024\ENTORNOS VIRTUALES DE APRENDIZAJE\Proyecto_FlashcardsApp\env
 
 if not defined PROMPT set PROMPT=$P$G
 

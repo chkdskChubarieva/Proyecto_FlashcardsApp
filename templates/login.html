@@ -11,21 +11,29 @@
         href='https://cdn-uicons.flaticon.com/2.3.0/uicons-solid-rounded/css/uicons-solid-rounded.css'>
 </head>
 
+
 <body>
+
+    <div class="flash-container">
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <div class="flash-messages">
+        {% for message in messages %}
+        {{ message }}
+        {% endfor %}
+    </div>
+    {% endif %}
+    {% endwith %}
+    </div>
+
     <header>
-        <div class="logo">
+        <div class="titulo" onclick="home()">
             <i class="fi fi-sr-layers"></i>
+            <span>FlashcardsApp</span>
         </div>
-        <div class="app-title">
-            <label for="nombre">FlashcardsApp</label>
-        </div>
-        <div class="inicio">
-            <button href="./" class="inicio" onclick="home()">Inicio</button>
-        </div>
-        <div class="form-button">
-            <div class="login">
-                <button href="login.html" class="login" onclick="login()">Iniciar Sesión</button>
-            </div>
+
+        <div class="opciones">
+            <button class="register" id="registrar" onclick="roles()">Registrarse</button>
         </div>
     </header>
     <main>
@@ -58,6 +66,30 @@
     function login() {
         window.location.href = './login';
     }
+
+    function roles() {
+        window.location.href = './roles';
+    }
+
+    
+    document.addEventListener("DOMContentLoaded", function() {
+            // Encuentra el contenedor de mensajes flash
+            var flashContainer = document.querySelector('.flash-container');
+
+            // Comprueba si hay un mensaje visible
+            if (flashContainer && flashContainer.innerHTML.trim().length > 0) {
+                // Ocultar el div después de 3 segundos (3000 ms)
+                setTimeout(function() {
+                    flashContainer.style.opacity = '0'; // Aplicar la transición de desvanecimiento
+                    // Esperar a que la transición termine antes de ocultar completamente
+                    setTimeout(function() {
+                        flashContainer.style.display = 'none';
+                    }, 500); // 500 ms para sincronizar con la transición de CSS
+                }, 3000); // Esperar 3 segundos antes de comenzar a desvanecer
+            }
+        });
+
+
 </script>
 
 </html>

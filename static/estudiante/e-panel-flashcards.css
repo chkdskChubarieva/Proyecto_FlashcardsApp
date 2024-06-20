@@ -1,10 +1,82 @@
-main section .contenido-principal {
+/*main section .contenido-principal {
     display: flex;
     align-content: flex-start;
     flex-wrap: wrap;
     overflow-y: auto;
     padding: 30px;
+}*/
+
+main section .contenido-principal {
+    display: flex;
+    flex-direction: column;
+    padding: 30px 50px;
+    overflow-y: auto;
 }
+
+.contenido-principal .tema-flashcards {
+    width: 100%;
+}
+
+.contenido-principal .tema-flashcards button {
+    position: absolute;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 5px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    background-color: #5E8D74;
+    color: #FFFFFF;
+    cursor: pointer;
+    transition: background-color all 0.1s ease-in-out;
+    right: 0;
+    margin: 10px 50px;
+}
+
+.contenido-principal .tema-flashcards button:hover {
+    background-color: rgba(94, 141, 116, 0.9);
+}
+
+.contenido-principal .tema-flashcards .titulo {
+    display: flex;
+    width: 100%;
+    height: 50px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0px 20px;
+    border-radius: 10px 10px 0px 0px;    font-size: 20px;
+    font-weight: bold;
+    color: #363636;
+    border-bottom: 1px solid rgb(54, 54, 54, 0.6);
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.contenido-principal .tema-flashcards .titulo:hover {
+    background-color: rgb(94, 141, 116, 0.2);
+    border-radius: 10px;
+    border-bottom: 1px solid transparent;
+}
+
+.contenido-principal .tema-flashcards .titulo .botones {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.contenido-principal .tema-flashcards .contenedor-flashcards {
+    display: flex;
+    width: 100%;
+    align-content: flex-start;
+    flex-wrap: wrap;
+    padding: 20px;
+
+    max-height: none;
+    overflow: hidden;
+    transition: height 0.2s ease, padding 0.2s ease;
+    height: auto;
+}
+
+/*---*/
 
 .contenido-principal .tarjeta-flashcard {
     display: flex;

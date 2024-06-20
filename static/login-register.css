@@ -3,85 +3,153 @@
 * {
     margin: 0px;
     padding: 0px;
+    font-family: "Nunito Sans", sans-serif;
+    box-sizing: border-box;
 }
 
 body {
-    background-color: #f5f5f5;
-    font-family: "Nunito Sans", sans-serif;
+    background-color: #F5F5F5;
+    overflow: auto;
 }
+
+/*============================INICIO - HEADER============================*/
+
+.flash-container{
+    display:flex;
+    width: 100%;
+    background-color: #374355;
+    justify-content: center;
+    color: #fff;
+    position: absolute;
+    top: 5rem;
+    transition: opacity 0.5s ease-out;
+}
+
+header {
+    display: flex;
+    width: 100%;
+    height: 5rem;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 20px;
+    color: #374355;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+header .titulo {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+header .titulo i {
+    font-size: 30px;
+    margin-right: 8px;
+    margin-top: 10px;
+}
+
+header .titulo span {
+    font-size: 28px;
+    font-weight: 800;
+}
+
+header .opciones {
+    height: 100%;
+    display: flex;
+    gap: 15px;
+}
+
+header .opciones button {
+    height: 100%;
+    font-size: 20px;
+    font-weight: 600;
+    padding: 5px;
+    border: none;
+    background-color: transparent;
+    color: #374355;
+    cursor: pointer;
+    transition: background-color 0.1s ease-in-out;
+}
+
+header .opciones button:hover {
+    background-color: rgba(153, 153, 153, 0.1);
+}
+
+/*============================FIN - HEADER============================*/
+
+/*============================INICIO - CONTENIDO PRINCIPAL INDEX============================*/
 
 main {
     display: flex;
     width: 100%;
-    height: 90vh;
-    justify-content: center;
+    height: calc(100vh - 5rem);
+    min-height: 480px;
     align-items: center;
+    justify-content: center;
 }
 
-form {
-    /*width: calc(25% - 100px);*/
-    width: 250px;
+main form {
+    width: 300px;
     background-color: #ffffff;
     border-radius: 20px;
-    box-shadow: 0px 2px rgba(0, 0, 0, 0.2);
-    padding: 50px;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+    padding: 40px;
 }
 
-.logo {
+main form .logo {
     display: flex;
     align-items: center;
     color: #374355;
+    gap: 5px;
 }
 
-.logo i {
+main form .logo i {
     font-size: 26px;
+    margin-top: 7px;
 }
 
-.logo p {
+main form .logo p {
     font-size: 16px;
     font-weight: 900;
-    padding-bottom: 8px;
-    margin-left: 8px;
-    cursor: default;
 }
 
-h1 {
+main form .formulario h1 {
     font-size: 36px;
     color: #374355;
-    margin: 10px 0px;
+    margin-bottom: 10px;
     cursor: default;
 }
 
-.formulario label {
+main form .formulario label {
     font-weight: bold;
-    font-size: 15px;
+    font-size: 16px;
     color: #262626;
 }
 
-.formulario input {
-    font-family: "Nunito Sans", sans-serif;
+main form .formulario input {
+    font-size: 15px;
     font-weight: bold;
-    width: calc(100% - 20px);
+    width: 100%;
     height: 30px;
     margin: 0px 0px 10px 0px;
-    padding: 0px 10px;
+    padding: 5px 10px;
     border: 1px solid rgba(0, 0, 0, 0.25);
     outline: none;
-    border-radius: 12px;
+    border-radius: 10px;
     color: #262626;
 }
 
-.botones {
+main form .botones {
     display: flex;
     flex-direction: column;
     width: 100%;
     align-items: center;
 }
 
-.botones input {
+main form .botones input {
     width: 100%;
     height: 40px;
-    border-radius: 12px;
+    border-radius: 10px;
     border: none;
     margin: 10px 0px 0px 0px;
     outline: none;
@@ -93,87 +161,22 @@ h1 {
     cursor: pointer;
 }
 
-.botones input:hover {
+main form .botones input:hover {
     background-color: #6aa083;
 }
 
-.botones input:active {
+main form .botones input:active {
     transform: scale(0.98);
 }
 
-.botones a {
+main form .botones a {
     font-size: 14px;
     color: #262626;
     text-decoration: none;
     margin-top: 10px;
+    text-align: center;
 }
 
-.botones a:hover {
+main form .botones a:hover {
     text-decoration: underline #262626;
-}
-
-
-
-header {
-    background-color: #F5F5F5;
-    padding: 20px;
-    display: flex;
-    padding-bottom: 12px;
-    box-shadow: 0px 2px rgba(0, 0, 0, 0.2);
-}
-
-header .logo {
-    font-size: 40px;
-    color: #374355;
-}
-
-header .app-title {
-    padding-left: 10px;
-    font-size: 30px;
-    color: #374355;
-    font-weight: 800;
-}
-
-header .form-button {
-    display: flex;
-    font-weight: 600;
-    background: none;
-    padding: 10px 16px;
-    margin-left: auto;
-    margin-right: 20px;
-}
-
-header .login{
-    font-size: 21px;
-    font-weight: bold;
-    background: none;
-    border: none;
-    color: #374355;
-    font-family: "Nunito Sans", sans-serif;
-}
-
-header .inicio{
-    font-size: 21px;
-    font-weight: bold;
-    background: none;
-    border: none;
-    color: #374355;
-    font-family: "Nunito Sans", sans-serif;
-}
-
-header .login {
-    margin-left: 10px;
-    
-}
-
-header .inicio {
-    margin-left: 10px;
-    margin-top: 5px;
-}
-
-.inicio:hover,
-.login:hover {
-    text-decoration: underline;
-    cursor: pointer;
-
 }

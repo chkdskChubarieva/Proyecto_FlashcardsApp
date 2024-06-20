@@ -20,7 +20,6 @@
 }
 
 .flashcard-principal-pregunta {
-    /*CAMBIAR ESTE VALOR A NONE/BLOCK PARA OCULTAR/MOSTRAR LA FLASHCARD*/
     width: 750px;
     height: 420px;
     border-radius: 10px;
@@ -138,6 +137,17 @@
     background-color: #ce7878;
 }
 
+.contenedor-flashcards .flashcard-barra .info-tema span {
+    display: flex;
+    font-size: 18px;
+    color: #363636;
+    gap: 5px;
+}
+
+.contenedor-flashcards .flashcard-barra .info-tema span p{
+    font-weight: 600;
+}
+
 .contenedor-flashcards .flashcard-barra .barra-botones {
     display: flex;
     gap: 10px;
@@ -152,6 +162,7 @@
     border-radius: 10px;
     border: none;
     color: #F5F5F5;
+    background-color: #5E8D74;
     gap: 5px;
     cursor: pointer;
 }
@@ -280,12 +291,11 @@
 .flashcard-opciones-laterales {
     display: flex;
     flex-direction: column;
-    width: 250px;
+    width: 270px;
     height: 420px;
     border-radius: 10px;
     background-color: #D9D9D9;
     padding: 10px;
-    flex-shrink: 0;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
@@ -294,6 +304,12 @@
     font-weight: bold;
     color: #363636;
     cursor: default;
+}
+
+.flashcard-opciones-laterales .opciones-1 {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
 }
 
 .flashcard-opciones-laterales .estrellas {
@@ -322,9 +338,13 @@
     color: gold;
 }
 
+.flashcard-opciones-laterales .estrellas input {
+    display: none;
+}
+
 .flashcard-opciones-laterales .cuadro-dificultad {
     display: flex;
-    width: 50%;
+    width: 100px;
     height: 39px;
     margin: 5px 0px 10px 0px;
     justify-content: center;
@@ -339,7 +359,7 @@
 
 .flashcard-opciones-laterales .comentario textarea {
     width: 100%;
-    height: 130px;
+    height: 159px;
     font-size: 16px;
     padding: 10px;
     margin: 5px 0px 10px 0px;
@@ -359,13 +379,33 @@
 
 .flashcard-opciones-laterales .cuadro-estado {
     display: flex;
-    width: 50%;
-    height: 35px;
+    width: 130px;
+    height: 39px;
     margin: 5px 0px 10px 0px;
     border-radius: 10px;
     justify-content: center;
     align-items: center;
     background-color: #F5F5F5;
+    color: #363636;
+    font-size: 18px;
+    font-weight: 600;
     gap: 5px;
     cursor: default;
+}
+
+.flashcard-opciones-laterales form button {
+    width: 100%;
+    height: 39px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #FFFFFF;
+    border-radius: 10px;
+    border: none;
+    background-color: #5E8D74;
+    cursor: pointer;
+    transition: 0.1s ease;
+}
+
+.flashcard-opciones-laterales form button:hover {
+    background-color: rgba(94, 141, 116, 0.9);
 }

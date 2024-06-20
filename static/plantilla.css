@@ -142,6 +142,7 @@ header .opciones button .info-usuario .rol {
 
 header .opciones .desplegable {
     display: none;
+    width: auto;
     flex-direction: column;
     position: absolute;
     align-items: center;
@@ -151,6 +152,7 @@ header .opciones .desplegable {
     background-color: #F5F5F5;
     gap: 10px;
     top: 60px;
+    right: 0;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     opacity: 0;
 }
@@ -281,9 +283,15 @@ main section nav {
     display: flex;
     width: 100%;
     height: 50px;
+    justify-content: space-between;
     align-items: center;
     padding: 0px 20px;
     border-bottom: 1px solid rgba(0, 0, 0, .1);
+}
+
+main section nav .navbar {
+    display: flex;
+    justify-content: left;
 }
 
 main section nav a {
@@ -304,6 +312,26 @@ main section nav p {
     color: #262626;
     margin: 0px 8px 0px 8px;
     cursor: default;
+}
+
+main section nav .botones {
+    display: flex;
+    gap: 8px;
+}
+
+main section nav .botones button {
+    font-size: 14px;
+    font-weight: 600;
+    padding: 7px;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    background-color: #5e8d74;
+    color: #FFFFFF;
+    cursor: pointer;
+}
+
+main section nav .botones button:hover {
+    background-color: rgba(94, 141, 116, 0.9);
 }
 
 main section .contenido-principal {

@@ -1,0 +1,320 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    font-family: "Nunito Sans", sans-serif;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    background-color: #F5F5F5;
+}
+
+/*============================INICIO - HEADER============================*/
+
+header {
+    display: flex;
+    width: 100%;
+    height: 60px;
+    justify-content: center;
+    align-items: center;
+    padding: 0px 20px;
+    border-bottom: 1px solid rgba(0, 0, 0, .2);
+}
+
+header .logo {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+header .logo i {
+    font-size: 26px;
+    color: rgba(55, 67, 85, .9);
+    margin-right: 5px;
+    margin-top: 8px;
+}
+
+header .logo span {
+    font-size: 24px;
+    font-weight: 900;
+    color: rgba(55, 67, 85, .9);
+}
+
+/*INICIO - BARRA DE BUSQUEDA (SOLO EN PANEL FLASHCARDS)*/
+
+header .barra-busqueda {
+    /*border: 1px solid black;*/
+    width: 400px;
+    height: 35px;
+    border-radius: 10px;
+}
+
+header .barra-busqueda form {
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+header .barra-busqueda form input {
+    width: 360px;
+    height: 100%;
+    font-size: 16px;
+    font-weight: 600;
+    color: #363636;
+    padding: 0px 10px;
+    outline: none;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 10px 0px 0px 10px;
+}
+
+header .barra-busqueda form input:focus {
+    border: 1px solid rgba(0, 0, 0, 0.4);
+}
+
+header .barra-busqueda form button {
+    width: 40px;
+    height: 100%;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 0px 10px 10px 0px;
+    outline: none;
+    cursor: pointer;
+}
+
+header .barra-busqueda form button i {
+    color: rgba(38, 38, 38, 0.8);
+    font-size: 16px;
+
+}
+
+header .barra-busqueda form button:hover {
+    background-color: #F5F5F5;
+}
+
+header .barra-busqueda form button:focus {
+    border: 1px solid rgba(0, 0, 0, 0.4);
+}
+
+/*FIN - BARRA DE BUSQUEDA (SOLO EN PANEL FLASHCARDS)*/
+
+
+header .opciones {
+    height: 100%;
+    display: flex;
+    gap: 40px;
+    align-items: center
+}
+
+header .opciones button {
+    display: flex;
+    font-size: 20px;
+    font-weight: 600;
+    align-items: center;
+    padding: 5px;
+    border: none;
+    border-radius: 10px;
+    color: rgba(55, 67, 85, .9);
+    background-color: transparent;
+    cursor: pointer;
+    gap: 10px;
+}
+
+header .opciones button:hover {
+    background-color: rgba(153, 153, 153, 0.1);
+    color: #374355;
+}
+
+header .opciones button .info-usuario {
+    display: flex;
+    flex-direction: column;
+}
+
+header .opciones button .info-usuario .username {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+header .opciones button .info-usuario .rol {
+    font-size: 14px;
+    font-weight: lighter;
+}
+
+header .opciones .desplegable {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    align-items: center;
+    border: 1px solid rgba(0, 0, 0, .2);
+    border-radius: 10px;
+    padding: 10px;
+    background-color: #F5F5F5;
+    gap: 10px;
+    top: 60px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+}
+
+header .opciones .desplegable span[class="titulo-desplegable"] {
+    font-size: 16px;
+    font-weight: bold;
+    color: rgba(55, 67, 85, .9);
+    cursor: default;
+}
+
+header .opciones .desplegable button {
+    display: flex;
+    font-size: 18px;
+    font-weight: 600;
+    padding: 5px 10px;
+    align-items: center;
+    background-color: rgba(255, 0, 0, 0.6);
+    color: #F5F5F5;
+    cursor: pointer;
+    transition: ease 0.2s;
+}
+
+header .opciones .desplegable button:hover {
+    background-color: rgba(255, 0, 0, 0.7);
+}
+
+#desplegable.show {
+    display: flex;
+    opacity: 1;
+}
+
+/*============================FIN - HEADER============================*/
+
+main {
+    display: flex;
+    width: 100%;
+    height: calc(100vh - 60px);
+}
+
+/*============================INICIO - ASIDE============================*/
+
+aside {
+    width: 260px;
+    height: calc(100vh - 60px);
+    border-right: 1px solid rgba(0, 0, 0, .1);
+    overflow-y: auto;
+}
+
+aside .boton-principal {
+    display: flex;
+    width: 100%;
+    height: 110px;
+    justify-content: center;
+    align-items: center;
+}
+
+aside .boton-principal button {
+    font-size: 20px;
+    padding: 10px 15px;
+    border-radius: 10px;
+    border: none;
+    background-color: rgba(55, 67, 85, 0.9);
+    color: #FFFFFF;
+    box-shadow: 0 2px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+}
+
+aside .boton-principal button:hover {
+    background-color: #374355;
+}
+
+aside .separador {
+    width: 100%;
+    margin: 5px 0px;
+    border-bottom: 1px solid rgba(0, 0, 0, .1);
+}
+
+aside .botones-secundarios {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+}
+
+aside .botones-clases {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+aside .botones-secundarios button,
+aside .botones-clases button {
+    width: 100%;
+    display: flex;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 0px 20px 20px 0px;
+    padding: 10px 15px;
+    align-items: center;
+    text-align: left;
+    background-color: transparent;
+    color: rgba(38, 38, 38, 0.9);
+    gap: 15px;
+    border: none;
+}
+
+aside .botones-secundarios i,
+aside .botones-clases i {
+    margin-top: 5.4px;
+}
+
+aside .botones-secundarios button:hover,
+aside .botones-clases button:hover {
+    background-color: rgba(38, 38, 38, 0.05);
+}
+
+/*============================FIN - ASIDE============================*/
+
+/*============================INICIO - PANEL PRINCIPAL============================*/
+
+main section[class="panel-principal"] {
+    width: calc(100% - 260px);
+    height: calc(100vh - 60px);
+}
+
+main section nav {
+    display: flex;
+    width: 100%;
+    height: 50px;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 20px;
+    border-bottom: 1px solid rgba(0, 0, 0, .1);
+}
+
+main section nav .navbar {
+    display: flex;
+    justify-content: left;
+}
+
+main section nav a {
+    font-size: 20px;
+    font-weight: 600;
+    color: #262626;
+    text-decoration: none;
+    cursor: default;
+}
+
+main section nav a:hover {
+    text-decoration: underline 2px solid #262626;
+}
+
+main section nav p {
+    font-size: 20px;
+    font-weight: 600;
+    color: #262626;
+    margin: 0px 8px 0px 8px;
+    cursor: default;
+}
+
+main section .contenido-principal {
+    width: 100%;
+    height: calc(100vh - 110px);
+}
+
+/*============================FIN - PANEL PRINCIPAL============================*/
